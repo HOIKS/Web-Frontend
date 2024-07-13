@@ -8,6 +8,7 @@ import Pretendard_Medium from "../assets/fonts/Pretendard-Medium.woff"
 import Pretendard_Regular from "../assets/fonts/Pretendard-Regular.woff"
 import Pretendard_SemiBold from "../assets/fonts/Pretendard-SemiBold.woff"
 import Pretendard_Thin from "../assets/fonts/Pretendard-Thin.woff"
+import OrelegaOne from "../assets/fonts/OrelegaOne-Regular.woff.woff"
 
 const GlobalStyle = createGlobalStyle`
 
@@ -46,6 +47,10 @@ const GlobalStyle = createGlobalStyle`
 @font-face {
     font-family: 'Pretendard-Thin';
     src: url(${Pretendard_Thin}) format('woff');
+}
+@font-face {
+    font-family: 'OrelegaOne';
+    src: url(${OrelegaOne}) format('woff');
 }
 
 *, *::before, *::after {
