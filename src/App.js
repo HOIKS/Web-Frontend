@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import GlobalStyle from './styles/globalStyle';
-import MainPage from './pages/mainPage';
+import BeforeLogin from './pages/mainPage';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle/>  
           <Routes>       
-            <Route path='/' element={<MainPage />} />
+            <Route path='/' element={<BeforeLogin />} />
           </Routes>
       </ThemeProvider> 
     </BrowserRouter>

@@ -8,7 +8,7 @@ import Pretendard_Medium from "../assets/fonts/Pretendard-Medium.woff"
 import Pretendard_Regular from "../assets/fonts/Pretendard-Regular.woff"
 import Pretendard_SemiBold from "../assets/fonts/Pretendard-SemiBold.woff"
 import Pretendard_Thin from "../assets/fonts/Pretendard-Thin.woff"
-import OrelegaOne from "../assets/fonts/OrelegaOne-Regular.woff.woff"
+import OrelegaOne from "../assets/fonts/OrelegaOne-Regular.woff"
 
 const GlobalStyle = createGlobalStyle`
 
@@ -69,8 +69,8 @@ body {
   font-family : 'Pretendard-Medium';
 	display: flex;
   margin : auto;
-  background : ${props => props.theme.colors.colorBg};
-  color : ${props => props.theme.colors.colorMain};
+  background : ${props => props.theme.colors.white};
+  color : ${props => props.theme.colors.black};
   list-style : none;
   height : 100vh;
   justify-content: center;
