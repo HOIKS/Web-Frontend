@@ -59,23 +59,25 @@ const GlobalStyle = createGlobalStyle`
   box-sizing : border-box;
 
 }
-@media (min-width: 800px) {
+@media (min-width: 1900px) {
   html {
-    font-size : 62.5% // 1rem = 10px
+    font-size : 62.5%;
+  }
+}
+@media (min-width: 1500px) and (max-width: 1800px) {
+  html {
+    font-size : 47.5%;
   }
 }
 
+
 body {
   font-family : 'Pretendard-Medium';
-	display: flex;
   margin : auto;
   background : ${props => props.theme.colors.white};
   color : ${props => props.theme.colors.black};
   list-style : none;
   height : 100vh;
-  justify-content: center;
-  align-items : center;
-  
   &::-webkit-scrollbar {
     display: none;
   }

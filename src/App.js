@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import GlobalStyle from './styles/globalStyle';
 import BeforeLogin from './pages/mainPage';
+import AdminMenuPage from './pages/adminMenuPage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <GlobalStyle/>  
           <Routes>       
             <Route path='/' element={<BeforeLogin />} />
+            <Route path='/menu' element={<AdminMenuPage />} />
           </Routes>
       </ThemeProvider> 
     </BrowserRouter>
