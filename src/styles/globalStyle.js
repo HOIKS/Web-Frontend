@@ -59,15 +59,25 @@ const GlobalStyle = createGlobalStyle`
   box-sizing : border-box;
 
 }
+
+
 @media (min-width: 1900px) {
   html {
     font-size : 62.5%;
   }
 }
-@media (min-width: 1500px) and (max-width: 1800px) {
+@media (min-width: 1500px) and (max-width: 1900px) {
   html {
     font-size : 47.5%;
   }
+}
+
+@media (max-width: 1500px) {
+  html {
+    font-size : 25.5%;
+  }
+}
+
 }
 
 
