@@ -182,7 +182,20 @@ const SideBar = ({isLogin}) => {
       }
     }
   } else {
+    return (
+      <l.SideBarContainer>
+        <div className="mainLogo">
+          <h1>HOIKS</h1>
+        </div>
+
+        <ul className="serviceLand">
+          <h2>Welcome to HOIKS</h2>
+
+        </ul>
+  
+      </l.SideBarContainer>
+      )
+    }
   }
-}
   
   export default SideBar;

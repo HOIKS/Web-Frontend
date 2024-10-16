@@ -252,10 +252,6 @@ export const MenuSettingContainer = styled.div`
       border-radius : 8px;
     }
 
-  
-
-
-
   .menuView{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, auto));
@@ -307,7 +303,5 @@ export const MenuSettingContainer = styled.div`
   }
   
   
-
-
 
 `
