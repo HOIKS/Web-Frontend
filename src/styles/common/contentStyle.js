@@ -249,6 +249,7 @@ export const MenuSettingContainer = styled.div`
       width: 280px;
       height: 50px;
       border-color: ${props => props.theme.colors.mainColor};
+      box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
       border-radius : 8px;
     }
 
@@ -277,8 +278,8 @@ export const MenuSettingContainer = styled.div`
 
   .menuImg {
     background-color: ${props => props.theme.colors.gray00};
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 2rem; 
     border-radius : 15px;
   
@@ -287,8 +288,8 @@ export const MenuSettingContainer = styled.div`
   .menuCreateButton {
     background-color: ${props => props.theme.colors.gray00};
     background-size: contain;
-    width: 180px;
-    height: 31vh;
+    width: 200px;
+    height: 260px;
     border-radius : 15px;
   }
 

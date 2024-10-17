@@ -2,7 +2,7 @@ import Axios from "axios";
 
 const accessToken = sessionStorage.getItem('accessToken');
 
-export async function mainCategoryFetch() {
+export async function mainCategoryDelete() {
     try {
         const response = await Axios.get('http://hoiks.store:3000/admin/categories', {
             headers: {
@@ -10,15 +10,15 @@ export async function mainCategoryFetch() {
                 'Content-Type': 'application/json'
             }
         });
-        console.log("[menuSetting > mainCategoryFetch] : ", response.data);
+        console.log("[menuSetting > mainCategoryDelete] : ", response.data);
         return response.data;
     } catch (error) {
-        console.error("[menuSetting > mainCategoryFetch] :", error);
+        console.error("[menuSetting > mainCategoryDelete] :", error);
         throw error; 
     }
 };
 
-export async function subCategoryFetch(mainCategoryId = 1) {
+export async function subCategoryDelete() {
     try {
         const response = await Axios.get(`http://hoiks.store:3000/admin/sub-categories?categoryId=${mainCategoryId}`, {
             headers: {
@@ -26,16 +26,15 @@ export async function subCategoryFetch(mainCategoryId = 1) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log("[menuSetting > subCategoryFetch] Input : ", mainCategoryId);
-        console.log("[menuSetting > subCategoryFetch] Response: ", response.data);
+        console.log("[menuSetting > subCategoryDelete] : ", response.data);
         return response.data;
     } catch (error) {
-        console.error("[menuSetting > subCategoryFetch] :", error);
+        console.error("[menuSetting > subCategoryDelete] :", error);
         throw error;
     }
 };
 
-export async function menuFetch(subCategoryId = 1) {
+export async function menuDelete() {
     try {
         const response = await Axios.get(`http://hoiks.store:3000/admin/menus?subCategoryId=${subCategoryId}`, {
             headers: {
@@ -43,11 +42,10 @@ export async function menuFetch(subCategoryId = 1) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log("[menuSetting > menuFetch] Input :", subCategoryId);
-        console.log("[menuSetting > menuFetch] Response :", response.data);
+        console.log("[menuSetting > menuDelete] Response :", response.data);
         return response.data;
     } catch (error) {
-        console.error("[menuSetting > menuFetch] :", error);
+        console.error("[menuSetting > menuDelete] :", error);
         throw error;
     }
 };
