@@ -66,6 +66,7 @@ const GlobalStyle = createGlobalStyle`
     font-size : 62.5%;
   }
 }
+  
 @media (min-width: 1500px) and (max-width: 1900px) {
   html {
     font-size : 47.5%;
@@ -76,8 +77,6 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size : 25.5%;
   }
-}
-
 }
 
 

@@ -256,8 +256,9 @@ export const MenuSettingContainer = styled.div`
   .menuView{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, auto));
-    grid-template-rows: 32vh 32vh;
+    grid-template-rows: 30vh 30vh;
     gap: 10px 10px;
+    margin-left : 15px;
   }
 
   .menuInfo {
@@ -268,13 +269,25 @@ export const MenuSettingContainer = styled.div`
   
   }
 
-  .menuBox {
+  .menuBox{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
+    .menuCreateButton {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menuCreateButton:hover {
+      background-color: ${props => props.theme.colors.mainColor}; 
+      transition: 0.3s;
+    }
   }
+
 
   .menuImg {
     background-color: ${props => props.theme.colors.gray00};

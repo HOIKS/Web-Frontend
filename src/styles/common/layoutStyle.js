@@ -118,11 +118,19 @@ export const SideBarContainer = styled.div`
       font-weight : 600;
       margin: 0;
       padding: 0;
+
+      &>a:hover {
+      color: ${props => props.theme.colors.mainColor};
     }
+    }
+
+    
 
     h3 {
       font-size : 16px;
     }
+
+    
 
     a {
       text-decoration: none;
