@@ -26,7 +26,7 @@ const LoginContent = () => {
         e.preventDefault(); // 기본 폼 제출 동작을 방지합니다.
     
         try {
-            const response = await Axios.post('http://hoiks.store:3000/auth/login', loginFormData, {
+            const response = await Axios.post('/api/auth/login', loginFormData, {
                 headers: {
                 'Content-Type': 'application/json'
                 }

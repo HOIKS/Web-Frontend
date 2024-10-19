@@ -12,7 +12,7 @@ const SideBar = ({isLogin}) => {
         return (
           <l.SideBarContainer>
           <div className="mainLogo">
-            <h1>HOIKS</h1>
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
           </div>
   
           <ul className="serviceList">
@@ -36,7 +36,7 @@ const SideBar = ({isLogin}) => {
         return (
           <l.SideBarContainer>
           <div className="mainLogo">
-            <h1>HOIKS</h1>
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
           </div>
   
           <ul className="serviceList">
@@ -60,7 +60,7 @@ const SideBar = ({isLogin}) => {
         return (
           <l.SideBarContainer>
           <div className="mainLogo">
-            <h1>HOIKS</h1>
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
           </div>
   
           <ul className="serviceList">
@@ -84,7 +84,7 @@ const SideBar = ({isLogin}) => {
         return (
           <l.SideBarContainer>
           <div className="mainLogo">
-            <h1>HOIKS</h1>
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
           </div>
   
           <ul className="serviceList">
@@ -108,7 +108,7 @@ const SideBar = ({isLogin}) => {
         return (
           <l.SideBarContainer>
           <div className="mainLogo">
-            <h1>HOIKS</h1>
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
           </div>
   
           <ul className="serviceList">
@@ -134,7 +134,7 @@ const SideBar = ({isLogin}) => {
         return (
           <l.SideBarContainer>
           <div className="mainLogo">
-            <h1>HOIKS</h1>
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
           </div>
   
           <ul className="serviceList">
@@ -160,7 +160,7 @@ const SideBar = ({isLogin}) => {
         return (
           <l.SideBarContainer>
           <div className="mainLogo">
-            <h1>HOIKS</h1>
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
           </div>
   
           <ul className="serviceList">

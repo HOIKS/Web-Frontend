@@ -1,10 +1,10 @@
 import Axios from "axios";
 
-const accessToken = sessionStorage.getItem('accessToken');
-
 export async function mainCategoryFetch() {
+    const accessToken = sessionStorage.getItem('accessToken');
+    console.log(accessToken);
     try {
-        const response = await Axios.get('http://hoiks.store:3000/admin/categories', {
+        const response = await Axios.get('/api/admin/categories', {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
@@ -19,8 +19,10 @@ export async function mainCategoryFetch() {
 };
 
 export async function subCategoryFetch(mainCategoryId = 1) {
+    const accessToken = sessionStorage.getItem('accessToken');
+    console.log(accessToken);
     try {
-        const response = await Axios.get(`http://hoiks.store:3000/admin/sub-categories?categoryId=${mainCategoryId}`, {
+        const response = await Axios.get(`/api/admin/sub-categories?categoryId=${mainCategoryId}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
@@ -36,8 +38,10 @@ export async function subCategoryFetch(mainCategoryId = 1) {
 };
 
 export async function menuFetch(subCategoryId = 1) {
+    const accessToken = sessionStorage.getItem('accessToken');
+    console.log(accessToken);
     try {
-        const response = await Axios.get(`http://hoiks.store:3000/admin/menus?subCategoryId=${subCategoryId}`, {
+        const response = await Axios.get(`/api/admin/menus?subCategoryId=${subCategoryId}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'

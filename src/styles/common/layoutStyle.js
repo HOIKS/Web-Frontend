@@ -79,6 +79,10 @@ export const SideBarContainer = styled.div`
     margin-left : 3rem;
     margin-top : 3rem;
     margin-bottom : 3rem;
+    a {
+      text-decoration: none;
+      color : ${props => props.theme.colors.mainColor};
+    }
   }
 
   .serviceLand {
