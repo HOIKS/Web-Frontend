@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: 15vw 85vw;
-    grid-template-rows: 10vh 90vh;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 80px 1fr;
 
     grid-template-areas:
       "sidebar header"
@@ -18,8 +18,8 @@ export const HeaderContainer = styled.div`
   justify-content: flex-end;
   box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.05);
   background-color: ${props => props.theme.colors.white};
-  width: 85vw;
-  height: 10rem;
+  width: 100%;
+  height: 80px;
   font-size : 1.3rem;
   color: ${props => props.theme.colors.black};
 
@@ -69,7 +69,7 @@ export const SideBarContainer = styled.div`
   align-items : center;
   flex-flow : row wrap;
   background-color: ${props => props.theme.colors.gray00};
-  width: 15vw;
+  width: 240px;
   height: 100vh;
 
   
@@ -91,7 +91,7 @@ export const SideBarContainer = styled.div`
     margin-left : 4rem;
     background-color: ${props => props.theme.colors.mainColor};
     color : ${props => props.theme.colors.white};
-    width: 12vw;
+    width: 190px;
     height: 60px;
     padding: 20px 24px 20px 16px;
     border-radius : 10px;
@@ -105,7 +105,7 @@ export const SideBarContainer = styled.div`
     align-items: start;
     list-style : none;
     color : ${props => props.theme.colors.gray5};
-    width: 13vw;
+    width: 210px;
     border-radius : 10px;
     margin: 10px 0px 10px 0px;
     margin-left : 2rem;
@@ -124,13 +124,11 @@ export const SideBarContainer = styled.div`
     }
     }
 
-    
 
     h3 {
       font-size : 16px;
     }
 
-    
 
     a {
       text-decoration: none;
@@ -154,7 +152,7 @@ export const SideBarContainer = styled.div`
     padding-bottom : 1rem;
     padding-left :  2rem;
     font-size : 14px;
-    width: 23rem;
+    width: 185px;
     border-radius : 10px;
   }
 
@@ -162,7 +160,7 @@ export const SideBarContainer = styled.div`
     border-radius : 10px;
     height: 52px;
     line-height: 58px;
-    width: 26rem;
+    width: 210px;
     background-color: ${props => props.theme.colors.gray2};
     color : ${props => props.theme.colors.mainColor} !important;
 

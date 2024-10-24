@@ -61,22 +61,26 @@ const GlobalStyle = createGlobalStyle`
 }
 
 
-@media (min-width: 1900px) {
-  html {
-    font-size : 62.5%;
-  }
-}
+// @media (min-width: 1500px) {
+//   html {
+//     font-size : 47.5%;
+//   }
+// }
   
-@media (min-width: 1500px) and (max-width: 1900px) {
-  html {
-    font-size : 47.5%;
-  }
-}
 
-@media (max-width: 1500px) {
-  html {
-    font-size : 25.5%;
-  }
+// @media (max-width: 1500px) {
+//   html {
+//     font-size : 25.5%;
+//   }
+// }
+
+html {
+    font-size: 47.5%;
+    height : 100%;
+    width : 100%;
+    min-width : 1500px;
+    min-height : 1200px;
+    overflow-x : scroll;
 }
 
 
@@ -86,10 +90,10 @@ body {
   background : ${props => props.theme.colors.white};
   color : ${props => props.theme.colors.black};
   list-style : none;
-  height : 100vh;
   &::-webkit-scrollbar {
     display: none;
   }
+  
 }
 `;
 

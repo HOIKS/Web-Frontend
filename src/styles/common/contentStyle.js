@@ -256,9 +256,10 @@ export const MenuSettingContainer = styled.div`
   .menuView{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, auto));
-    grid-template-rows: 30vh 30vh;
+    grid-template-rows: 1fr 1fr 1fr;
     gap: 10px 10px;
     margin-left : 15px;
+    margin-top : 25px;
   }
 
   .menuInfo {
