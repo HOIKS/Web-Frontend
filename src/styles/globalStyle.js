@@ -78,8 +78,8 @@ html {
     font-size: 47.5%;
     height : 100%;
     width : 100%;
-    min-width : 1500px;
-    min-height : 1200px;
+    min-width : 1300px;
+    min-height : 800px;
     overflow-x : scroll;
 }
 

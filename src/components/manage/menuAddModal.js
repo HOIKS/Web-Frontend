@@ -1,8 +1,8 @@
-import * as m from "../styles/common/modalStyle.js";
-import menuAddImg from "../assets/imgs/menuAdd.png";
+import * as m from "../../styles/common/modalStyle";
+import menuAddImg from "../../assets/imgs/menuAdd.png";
 import { useState, useEffect } from "react";
-import { menuAdd, menuImgAdd } from "./api/menuSettingAdd.js";
-import { mainCategoryFetch,  subCategoryFetch } from "./api/menuSettingFetch.js";
+import { menuAdd, menuImgAdd } from "../api/menuSettingAdd.js";
+import { mainCategoryFetch,  subCategoryFetch } from "../api/menuSettingFetch.js";
 
 
 const MenuAddModal = ({onCancel, currentMainCategory, currentSubCategory}) => {

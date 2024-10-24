@@ -26,7 +26,7 @@ export const MenuCommonModal = styled.form`
             height: 7rem;
             line-height: 100%;
             text-indent: 2rem;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color : ${props => props.theme.colors.gray6};
             background-color: ${props => props.theme.colors.white};
@@ -39,6 +39,7 @@ export const MenuCommonModal = styled.form`
         select {
             width: 30rem;
             height: 7rem;
+            font-size: 18px;
             border-color: ${props => props.theme.colors.mainColor};
             margin-left : 2rem;
             border-radius : 8px;
@@ -121,6 +122,7 @@ export const MenuCommonModal = styled.form`
             height: 7rem;
             line-height: 100%;
             font-size: 18px;
+            font-weight: 700;
             color : ${props => props.theme.colors.white};
             background-color: ${props => props.theme.colors.mainColor};
             border-radius : 8px;
@@ -177,7 +179,8 @@ export const MenuSettingModal = styled.form`
             height: 7rem;
             line-height: 100%;
             text-indent: 2rem;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 700;
             color : ${props => props.theme.colors.gray6};
             background-color: ${props => props.theme.colors.white};
             outline: none;
@@ -198,6 +201,7 @@ export const MenuSettingModal = styled.form`
             display : inline-block;
             width: 30rem;
             height: 7rem;
+            font-size: 18px;
             border-color: ${props => props.theme.colors.mainColor};
             margin-left : 2rem;
             border-radius : 8px;
@@ -280,6 +284,7 @@ export const MenuSettingModal = styled.form`
             height: 7rem;
             line-height: 100%;
             font-size: 18px;
+            font-weight : 700;
             color : ${props => props.theme.colors.white};
             background-color: ${props => props.theme.colors.mainColor};
             border-radius : 8px;

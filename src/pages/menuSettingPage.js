@@ -1,6 +1,6 @@
 import MainHeader from "../components/common/mainHeader";
 import SideBar from "../components/common/sideBar";
-import MenuSettingContent from "../components/menuSettingContent";
+import MenuSettingContent from "../components/manage/menuSettingContent";
 
 import * as l from "../styles/common/layoutStyle";
 

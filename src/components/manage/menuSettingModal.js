@@ -1,11 +1,11 @@
-import * as m from "../styles/common/modalStyle.js";
-import menuAddImg from "../assets/imgs/menuAdd.png";
-import CustomSelect from "./customSelect.js";
+import * as m from "../../styles/common/modalStyle.js";
+import menuAddImg from "../../assets/imgs/menuAdd.png";
+import CustomSelect from "../customSelect.js";
 import { useState, useEffect } from "react";
-import { mainCategoryFetch,  subCategoryFetch } from "./api/menuSettingFetch.js";
-import { menuImgAdd } from "./api/menuSettingAdd.js";
-import { menuPut } from "./api/menuSettingPut.js";
-import { menuDelete } from "./api/menuSettingDelete.js";
+import { mainCategoryFetch,  subCategoryFetch } from "../api/menuSettingFetch.js";
+import { menuImgAdd } from "../api/menuSettingAdd.js";
+import { menuPut } from "../api/menuSettingPut.js";
+import { menuDelete } from "../api/menuSettingDelete.js";
 
 const MenuSettingModal = ({onCancel, selectedMenu}) => {
 

@@ -113,6 +113,7 @@ export const SideBarContainer = styled.div`
     font-size : 18px;
     font-weight : 600;
     text-indent: 12px;
+
     h2 {
       font-size : 21px;
       font-weight : 600;
@@ -124,15 +125,13 @@ export const SideBarContainer = styled.div`
     }
     }
 
-
     h3 {
       font-size : 16px;
     }
 
-
     a {
       text-decoration: none;
-      line-height: 2rem;
+      line-height: 100%;
       color : ${props => props.theme.colors.gray5};
     }
   }
@@ -159,7 +158,7 @@ export const SideBarContainer = styled.div`
   .alsoHere {
     border-radius : 10px;
     height: 52px;
-    line-height: 58px;
+    line-height: 52px;
     width: 210px;
     background-color: ${props => props.theme.colors.gray2};
     color : ${props => props.theme.colors.mainColor} !important;
