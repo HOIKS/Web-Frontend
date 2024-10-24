@@ -1,44 +1,69 @@
-import * as m from "../styles/common/modalStyle";
+import * as m from "../styles/common/modalStyle.js";
 import menuAddImg from "../assets/imgs/menuAdd.png";
+import CustomSelect from "./customSelect.js";
 import { useState, useEffect } from "react";
-import { menuAdd, menuImgAdd } from "./api/menuSettingAdd";
-import { mainCategoryFetch,  subCategoryFetch } from "../components/api/menuSettingFetch.js";
+import { mainCategoryFetch,  subCategoryFetch } from "./api/menuSettingFetch.js";
+import { menuImgAdd } from "./api/menuSettingAdd.js";
+import { menuPut } from "./api/menuSettingPut.js";
+import { menuDelete } from "./api/menuSettingDelete.js";
 
-
-const MenuSettingModal = ({onCancel}) => {
+const MenuSettingModal = ({onCancel, selectedMenu}) => {
 
     let [mainCategories, setMainCategories] = useState([]);
     let [subCategories, setSubCategories] = useState([]);
 
-    let [selectedMainCategory, setSelectedMainCategory] = useState(1);
-    let [selectedSubCategory, setSelectedSubCategory] = useState(1);
+    let [menu, setMenu] = useState({
+        id : selectedMenu.menuId,
+        name : selectedMenu.name,
+        info : selectedMenu.info,
+        price : selectedMenu.price,
+        photoUrl : selectedMenu.photoUrl,
+        subCategoryId : selectedMenu.subCategoryId,
+        mainCategoryId : selectedMenu.mainCategoryId
+    });
+
+    let [isPhotoChanged, setIsPhotoChanged] = useState(false);
 
     let [image, setImage] = useState(menuAddImg);
     let [preview, setPreview] = useState(null);
-    async function handleMenuAdd(e) {
+
+    async function effectSubCategoryFetch(MainCategoryId) {
+        try {
+            const fetchedSubCategory = await subCategoryFetch(MainCategoryId);
+            setSubCategories(fetchedSubCategory);
+        } catch (error) {
+            window.alert(error);
+        }
+    }
+
+    async function handleMenuPut(e) {
         e.preventDefault();
 
         const addFormData = new FormData(e.target);
-        const data = {
-            name: addFormData.get('menuName'),
-            info: addFormData.get('menuInfo'),
-            price: parseInt(addFormData.get('menuPrice'),10),
-            subCategoryId: parseInt(addFormData.get('subCategory'),10)
-        }
 
+        const data = {
+            menuId : parseInt(menu.id, 10),
+            name: menu.name,
+            info: menu.info,
+            price: parseInt(menu.price, 10),
+            photoURL : menu.photoUrl,
+            subCategoryId: parseInt(menu.subCategoryId, 10),
+            mainCategoryId: parseInt(menu.mainCategoryId, 10)
+        }
         const photoFile = addFormData.get('menuPhoto');
 
-
         try {
-            const responseMenuImgAdd = await menuImgAdd(photoFile);
-            data.photoUrl = responseMenuImgAdd.url.split("/").pop();
-            const responseMenuAdd = await menuAdd(data.name, data.info, data.price, data.photoUrl, data.subCategoryId);
+            if(isPhotoChanged) {
+                const responseMenuImgAdd = await menuImgAdd(photoFile);
+                data.photoURL = responseMenuImgAdd.url.split("/").pop();
+            } else {
+                data.photoURL = menu.photoUrl
+            }
             
-            console.log(responseMenuAdd);
-            console.log(responseMenuImgAdd);
+            const responseMenuPut = await menuPut(data.menuId, data.name, data.info, data.price, data.photoURL, data.subCategoryId);
 
-            if(responseMenuAdd || responseMenuImgAdd) {
-                window.alert("메뉴가 추가되었습니다!");
+            if(responseMenuPut) {
+                window.alert("메뉴가 수정되었습니다!");
                 onCancel();
             }
             
@@ -47,19 +72,19 @@ const MenuSettingModal = ({onCancel}) => {
         }
     }
 
+    async function handleMenuDelete() {
 
-    const handleMenuImgChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setImage(file);
-            const reader = new FileReader();
-            console.log(reader);
-            reader.onloadend = () => {
-                setPreview(reader.result);
-            };
-            reader.readAsDataURL(file);
+        try {
+            const responseMenuDelete = await menuDelete(parseInt(menu.id, 10));
+            if(responseMenuDelete) {
+                window.alert("메뉴가 삭제되었습니다!");
+                onCancel();
+            }
+        } catch (error) {
+            window.alert(error);
         }
-      };
+        
+    }
 
     useEffect(() => {
         async function effectMainCategoryFetch() {
@@ -71,79 +96,118 @@ const MenuSettingModal = ({onCancel}) => {
             }
         }
         effectMainCategoryFetch();
-    }, []);
+        effectSubCategoryFetch(selectedMenu.mainCategoryId);
+
+    }, [ selectedMenu.mainCategoryId ]);
 
 
-    async function effectSubCategoryFetch(MainCategoryId) {
-        try {
-            const fetchedSubCategory = await subCategoryFetch(MainCategoryId);
-            setSubCategories(fetchedSubCategory);
-        } catch (error) {
-            window.alert(error);
+    const handleMenuImgChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+            setIsPhotoChanged(true);
+            const reader = new FileReader();
+            console.log(reader);
+            reader.onloadend = () => {
+                setPreview(reader.result);
+            };
+            reader.readAsDataURL(file);
         }
+      };
+
+
+    const handleSelectMainCategory = (valueId, nameString) => {
+        setMenu({
+            ...menu,
+            mainCategoryId: valueId
+        })   
     }
 
-    const handleSelectMainCategory = (e) => {
-        const { value } = e.target;
-        setSelectedMainCategory(value);
-        effectSubCategoryFetch(value);
+    const handleSelectSubCategory = (valueId, nameString) => {
+        setMenu({
+            ...menu,
+            subCategoryId: valueId
+        })
     }
 
-    const handleSelectSubCategory = (e) => {
+    const handleInfoChange = (e) => {
         const { value } = e.target;
-        setSelectedSubCategory(value);
+        setMenu({
+            ...menu,
+            info: value
+        })
+
+    }
+
+    const handlePriceChange = (e) => {
+        const { value } = e.target;
+        setMenu({
+            ...menu,
+            price: value
+        })
+
+    }
+
+    const handleNameChange = (e) => {
+        const { value } = e.target;
+        setMenu({
+            ...menu,
+            name: value
+        })
+
     }
 
     return (
-        <m.MenuSettingModal onSubmit={handleMenuAdd}>
+        <m.MenuSettingModal onSubmit={handleMenuPut}>
+            <input type="hidden" name="menuId" value={menu.id}/>
             <div className="menuTop">
-                <input type="text" name="menuName"placeholder="메뉴 명"/>
-                <div>
-                    <select name="mainCategory" onChange={handleSelectMainCategory}>
-                        <option value="none"> 메인 카테고리</option>
-                        {mainCategories.map((category) => (
-                            <option 
-                                key={category.id} 
-                                value={category.id}
-                            >
-                                {category.name}
-                            </option>
-                        ))}
-                    </select>
-                    <select name="subCategory" onChange={handleSelectSubCategory}>
-                        <option value="none"> 세부 카테고리</option>
-                        {subCategories.map((category) => (
-                            <option 
-                                key={category.id} 
-                                value={category.id}
-                            >
-                                {category.name}
-                            </option>
-                        ))}
-                    </select> 
+                <input  type="text" name="menuName" 
+                        placeholder={menu.name} 
+                        value={menu.name}
+                        onChange={handleNameChange}/> 
+                <div className="menuCategory">
+                    <CustomSelect
+                        className="customSelect" 
+                        name="mainCategory"
+                        options={mainCategories} 
+                        defaultValue={menu.mainCategoryId} 
+                        onChange={handleSelectMainCategory}/>
+                    <CustomSelect
+                        className="customSelect"
+                        name="subCategory" 
+                        options={subCategories} 
+                        defaultValue={menu.subCategoryId} 
+                        onChange={handleSelectSubCategory}/>
                 </div>
             </div>
 
             <div className="menuMid">
                 <div>
-                    <img src={preview} />
-                    <input type="file" accept="image/*" name="menuPhoto" onChange={handleMenuImgChange}/>
+                    <img src={ preview ? preview : "/api/file/static/" + menu.photoUrl} />
+                    <input  type="file" accept="image/*" name="menuPhoto"
+                            onChange={handleMenuImgChange}/>
                 </div>
-                <input type="textarea" className="menuDesc" name="menuInfo" placeholder="메뉴 설명"/> 
-            </div>
+                    <input  type="textarea" className="menuDesc" name="menuInfo" 
+                            placeholder={menu.info} 
+                            value={menu.info}
+                            onChange={handleInfoChange}/> 
+                </div>
 
             <div className="menuBottom">
-                <input type="number" min='10' max="9999999" name="menuPrice" placeholder="가격"/>
-                <h3>원</h3>
                 <div>
-                    <button className="modalClose" onClick={onCancel}>취소</button>
-                    <button type="submit">메뉴 추가하기</button>
+                    <input  type="number" min='10' max="9999999" name="menuPrice" 
+                            placeholder={menu.price} 
+                            value={menu.price} 
+                            onChange={handlePriceChange}/>
+                    <h3>원</h3>
                 </div>
-                
+                <div>
+                    <button className="modalClose" type="button" onClick={onCancel}>취소</button>
+                    <button className="menuDelete" type="button" onClick={handleMenuDelete}>메뉴 삭제하기</button>
+                    <button type="submit">메뉴 수정하기</button>
+                </div>
             </div>
-
         </m.MenuSettingModal>
     )
 }
-
 export default MenuSettingModal

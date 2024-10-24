@@ -1,51 +1,26 @@
 import Axios from "axios";
 
-const accessToken = sessionStorage.getItem('accessToken');
+export async function menuDelete(menuId) {
+    const accessToken = sessionStorage.getItem('accessToken');
 
-export async function mainCategoryDelete() {
+    const requestBody = {
+        menuId : menuId
+    }
     try {
-        const response = await Axios.get('http://hoiks.store:3000/admin/categories', {
+        const response = await Axios.delete(
+            '/api/admin/menus', 
+            {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
-            }
+            },
+            data: requestBody
         });
-        console.log("[menuSetting > mainCategoryDelete] : ", response.data);
+        console.log("[DELETE REQUEST] : ", menuId);
+        console.log("[DELETE RESPONSE] : ", response.data);
         return response.data;
     } catch (error) {
-        console.error("[menuSetting > mainCategoryDelete] :", error);
+        console.error("[DELETE ERROR] :", error);
         throw error; 
-    }
-};
-
-export async function subCategoryDelete() {
-    try {
-        const response = await Axios.get(`http://hoiks.store:3000/admin/sub-categories?categoryId=${mainCategoryId}`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        console.log("[menuSetting > subCategoryDelete] : ", response.data);
-        return response.data;
-    } catch (error) {
-        console.error("[menuSetting > subCategoryDelete] :", error);
-        throw error;
-    }
-};
-
-export async function menuDelete() {
-    try {
-        const response = await Axios.get(`http://hoiks.store:3000/admin/menus?subCategoryId=${subCategoryId}`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        console.log("[menuSetting > menuDelete] Response :", response.data);
-        return response.data;
-    } catch (error) {
-        console.error("[menuSetting > menuDelete] :", error);
-        throw error;
     }
 };

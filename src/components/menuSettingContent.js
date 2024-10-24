@@ -1,10 +1,13 @@
 import * as c from "../styles/common/contentStyle";
 import * as l from "../styles/common/layoutStyle";
-import { mainCategoryFetch,  subCategoryFetch, menuFetch, } from "../components/api/menuSettingFetch.js";
-import menuAddImg from "../assets/imgs/menuAdd.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import MenuAddModal from "./menuAddModal.js";
 import MenuSettingModal from "./menuSettingModal.js";
+import CustomSelect from "./customSelect.js";
+import { mainCategoryFetch,  subCategoryFetch, menuFetch, } from "../components/api/menuSettingFetch.js";
+import menuAddImg from "../assets/imgs/menuAdd.png";
+
 
 
 const MenuSettingContent = () => {
@@ -14,23 +17,18 @@ const MenuSettingContent = () => {
     let [mainCategories, setMainCategories] = useState([]);
     let [subCategories, setSubCategories] = useState([]);
 
-    let [selectedMainCategory, setSelectedMainCategory] = useState(1);
-    let [selectedSubCategory, setSelectedSubCategory] = useState(1);
-    
+    // selectedMainCategory, selectedSubCategory: [id, StringName]
+    let [selectedMainCategory, setSelectedMainCategory] = useState([1, null]);
+    let [selectedSubCategory, setSelectedSubCategory] = useState([1, null]);
+
     let [isAddModalOpen, setAddModalOpen] = useState(false);
+    let [isSettingModalOpen, setSettingModalOpen] = useState(false);
 
     let [menus, setMenus] = useState([]);
+    let [selectedMenu, setSelectedMenu] = useState([]);
 
-    // 컨텐츠 로드시 메인 메뉴 GET
+
     useEffect(() => {
-    /**
-     * 컨텐츠 로드시 메인 메뉴 GET
-     * 
-     * useEffect 내부에 정의된 함수
-     * mainCategoryFetch 함수를 호출하여 메인 메뉴를 가져옴
-     * 가져온 메인 카테고리를 state에 저장
-     * 에러가 있으면 state에 저장
-     */
         async function effectMainCategoryFetch() {
             try {
                 const fetchedMainCategory = await mainCategoryFetch();
@@ -42,17 +40,8 @@ const MenuSettingContent = () => {
             }
         }
         effectMainCategoryFetch();
-    }, []);
+        }, []);
 
-
-    /**
-     * 서브 메뉴 GET
-     * 
-     * 선택된 메인 메뉴 ID를 파라미터로 받아 서브 메뉴를 GET
-     * 가져온 서브 카테고리를 state에 저장
-     * 에러가 있으면 state에 저장
-     * @param {number} MainCategoryId - 선택된 메인 메뉴 ID
-     */
     async function effectSubCategoryFetch(MainCategoryId) {
         try {
             const fetchedSubCategory = await subCategoryFetch(MainCategoryId);
@@ -64,13 +53,6 @@ const MenuSettingContent = () => {
         }
     }
 
-    
-    /**
-     * 선택된 서브 메뉴 ID를 파라미터로 받아 메뉴를 GET
-     * 가져온 메뉴를 state에 저장
-     * 에러가 있으면 state에 저장
-     * @param {number} SubCategoryId - 선택된 서브 메뉴 ID
-     */
     async function effectMenuFetch(SubCategoryId) {
         try {
             const fetchedMenus = await menuFetch(SubCategoryId);
@@ -82,25 +64,45 @@ const MenuSettingContent = () => {
         }
     }
 
-
-    const handleSelectMainCategory = (e) => {
-        const { name, value } = e.target;
-        setSelectedMainCategory(value);
-        effectSubCategoryFetch(value);
+    const handleSelectMainCategory = (valueId, nameString) => {
+        // const { value } = e.target;
+        setSelectedMainCategory([valueId, nameString]);
+        effectSubCategoryFetch(valueId);
     }
 
-    const handleSelectSubCategory = (e) => {
-        const { value } = e.target;
-        setSelectedSubCategory(value);
-        effectMenuFetch(value);
+    const handleSelectSubCategory = (valueId, nameString) => {
+        // const { value } = e.target;
+        setSelectedSubCategory([valueId, nameString]);
+        effectMenuFetch(valueId);
     }
 
     const handleOpenAddModal = () => {
-        setAddModalOpen(true); // 모달 열기
+        setAddModalOpen(true); // 메뉴 추가 모달 열기
     };
 
     const handleCloseAddModal = () => {
-        setAddModalOpen(false); // 모달 닫기
+        setAddModalOpen(false); // 메뉴 추가 모달 닫기
+        effectMenuFetch(selectedSubCategory[0]);
+    };
+
+    const handleOpenSettingModal = (menu) => {
+        setSelectedMenu({
+            menuId: menu.id,
+            photoUrl: menu.photoUrl,
+            name: menu.name,
+            price: menu.price,
+            info: menu.info,
+            mainCategoryId: selectedMainCategory[0],
+            mainCategoryString : selectedMainCategory[1],
+            subCategoryId: selectedSubCategory[0],
+            subCategoryString : selectedSubCategory[1]
+        });
+        setSettingModalOpen(true);
+    };
+
+    const handleCloseSettingModal = () => {
+        setSettingModalOpen(false); // 메뉴 설정 모달 닫기
+        effectMenuFetch(selectedSubCategory[0]);
     };
 
     if (isLoading) return <h1>Loading...</h1>;
@@ -109,38 +111,32 @@ const MenuSettingContent = () => {
     return (
       <l.MainContainer>
         {isAddModalOpen && (
-                <MenuSettingModal onCancel={handleCloseAddModal}>
-                </MenuSettingModal>
+            <MenuAddModal onCancel={handleCloseAddModal}>
+            </MenuAddModal>
+        )}
+        {isSettingModalOpen && (
+            <MenuSettingModal onCancel={handleCloseSettingModal} selectedMenu={selectedMenu}>
+            </MenuSettingModal>
         )}
         <c.MenuSettingContainer>
             <div className="categoryView">
                 <div className="categorySelection">
                     <div className="categoryTitle">메인 카테고리</div>
-                    <select name="mainCategory" onChange={handleSelectMainCategory} >
-                        <option value="none">카테고리를 선택해주세요</option>
-                        {mainCategories.map((category) => (
-                            <option 
-                                key={category.id} 
-                                value={category.id}
-                            >
-                                {category.name}
-                            </option>
-                        ))}
-                    </select>
+                    <CustomSelect
+                        name="mainCategory"
+                        options={mainCategories}
+                        onChange={handleSelectMainCategory}
+                        defaultValue={selectedMainCategory[0]}
+                    ></CustomSelect>
                 </div>
                 <div className="categorySelection">
                     <div className="categoryTitle">세부 카테고리</div>
-                    <select name="subCategory" onChange={handleSelectSubCategory}>
-                        <option value="none">카테고리를 선택해주세요</option>
-                        {subCategories.map((category) => (
-                            <option 
-                                key={category.id} 
-                                value={category.id}
-                            >
-                                {category.name}
-                            </option>
-                        ))}
-                    </select>
+                    <CustomSelect
+                        name="subCategory"
+                        options={subCategories}
+                        onChange={handleSelectSubCategory}
+                        defaultValue={selectedSubCategory[0]}
+                    ></CustomSelect>
                 </div>
             </div>
 
@@ -151,7 +147,7 @@ const MenuSettingContent = () => {
                     </div>
                 </div>
                 {menus.map((menu, index) => (
-                    <div className="menuBox" key={menu.id}>
+                    <div className="menuBox" key={menu.id} onClick={() => handleOpenSettingModal(menu)}>
                         <img className="menuImg" src={"/api/file/static/" + menu.photoUrl} onError={e => e.target.src = "https://via.placeholder.com/150"} alt=""/>
                         <div className="menuInfo">
                             <div className="menuName">{menu.name}</div>
