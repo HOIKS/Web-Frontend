@@ -1,7 +1,6 @@
-import Axios from "axios";
+import api from "./baseAPI";
 
 export async function menuPut(menuId, menuName, menuInfo, menuPrice, menuPhotoUrl, subCategoryId) {
-    const accessToken = sessionStorage.getItem('accessToken');
     const data = {
         menuId : menuId,
         name : menuName,
@@ -12,11 +11,10 @@ export async function menuPut(menuId, menuName, menuInfo, menuPrice, menuPhotoUr
     }
 
     try {
-        const response = await Axios.put(
-            '/api/admin/menus', 
+        const response = await api.put(
+            '/admin/menus', 
             data, {
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             }
         });

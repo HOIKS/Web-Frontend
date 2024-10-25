@@ -1,8 +1,9 @@
 import * as c from "../styles/common/contentStyle";
 import * as l from "../styles/common/layoutStyle";
+
+import { Login } from "./api/authService";
 import { useState } from "react";
-import Axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginContent = () => {
@@ -24,26 +25,13 @@ const LoginContent = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // 기본 폼 제출 동작을 방지합니다.
-    
+
         try {
-            const response = await Axios.post('/api/auth/login', loginFormData, {
-                headers: {
-                'Content-Type': 'application/json'
-                }
-            });
-      
-            // 서버로부터 받은 accessToken을 세션 스토리지에 저장합니다.
-            const { accessToken } = response.data;
-            if (accessToken) {
-              sessionStorage.setItem('accessToken', accessToken);
-              console.log('Access token saved :', accessToken);
-              navigate('/dashboard');
-              
-            } else {
-              console.error('Access token not found in response');
-            }
+            const authResponse = await Login(loginFormData.email, loginFormData.password);
+            console.log("Login Success:", authResponse);
+            navigate('/dashboard');
         } catch (error) {
-            console.error('Failed to log in:', error);
+            window.alert(error);
         }
       };
 

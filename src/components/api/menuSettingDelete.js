@@ -1,17 +1,14 @@
-import Axios from "axios";
+import api from "./baseAPI";
 
 export async function menuDelete(menuId) {
-    const accessToken = sessionStorage.getItem('accessToken');
 
     const requestBody = {
         menuId : menuId
     }
+
     try {
-        const response = await Axios.delete(
-            '/api/admin/menus', 
-            {
+        const response = await api.delete('/admin/menus', {
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             },
             data: requestBody

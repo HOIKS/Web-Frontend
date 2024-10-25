@@ -1,4 +1,4 @@
-import Axios from "axios";
+import api from "./baseAPI";
 
 /**
  * Get all main categories from the server.
@@ -7,11 +7,9 @@ import Axios from "axios";
  * If there is an error, it is logged and re-thrown.
  */
 export async function mainCategoryFetch() {
-    const accessToken = sessionStorage.getItem('accessToken');
     try {
-        const response = await Axios.get('/api/admin/categories', {
+        const response = await api.get('/admin/categories', {
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             }
         });
@@ -31,11 +29,9 @@ export async function mainCategoryFetch() {
  * @param {number} mainCategoryId - The ID of the main category to get sub categories of. Defaults to 1.
  */
 export async function subCategoryFetch(mainCategoryId = 1) {
-    const accessToken = sessionStorage.getItem('accessToken');
     try {
-        const response = await Axios.get(`/api/admin/sub-categories?categoryId=${mainCategoryId}`, {
+        const response = await api.get(`/admin/sub-categories?categoryId=${mainCategoryId}`, {
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             }
         });
@@ -56,11 +52,9 @@ export async function subCategoryFetch(mainCategoryId = 1) {
  * @param {number} subCategoryId - The ID of the sub category to get menus of. Defaults to 1.
  */
 export async function menuFetch(subCategoryId = 1) {
-    const accessToken = sessionStorage.getItem('accessToken');
     try {
-        const response = await Axios.get(`/api/admin/menus?subCategoryId=${subCategoryId}`, {
+        const response = await api.get(`/admin/menus?subCategoryId=${subCategoryId}`, {
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             }
         });
