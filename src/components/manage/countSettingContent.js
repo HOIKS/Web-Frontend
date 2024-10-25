@@ -58,7 +58,7 @@ const CountSettingContent = () => {
                         <h3>입출금 내역</h3>
                         <div className="tableWrapper">
                         {GaraData.map((data) => (
-                            <div className="tableItem">
+                            <div key={data} className="tableItem">
                                 <div> 2024.07.30 </div>
                                 <div> 내역 정보 </div>
                                 <div> + 10,000원 </div>

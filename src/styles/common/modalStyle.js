@@ -128,6 +128,10 @@ export const MenuCommonModal = styled.form`
             border-radius : 8px;
             border: 5px solid ${props => props.theme.colors.mainColor};
             margin-left : 2rem;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         .modalClose {
@@ -138,6 +142,10 @@ export const MenuCommonModal = styled.form`
             background-color: ${props => props.theme.colors.gray2};
             border: 5px solid ${props => props.theme.colors.gray2};
             color : ${props => props.theme.colors.black};
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         .menuDelete {
@@ -149,6 +157,10 @@ export const MenuCommonModal = styled.form`
             border: 5px solid ${props => props.theme.colors.gray2};
             color : ${props => props.theme.colors.black};
         
+            &:hover {
+                cursor: pointer;
+            }
+
         }
     }
 `
