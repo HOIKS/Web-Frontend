@@ -252,6 +252,18 @@ export const MenuSettingContainer = styled.div`
       border-radius : 8px;
     }
 
+  .categorySettingButton {
+    width: 160px;
+    height: 50px;
+    margin-top: 28px;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: ${props => props.theme.colors.mainColor};
+    color: ${props => props.theme.colors.white};
+    border-radius: 10px;
+    border: none;
+  }
   .menuView{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, auto));

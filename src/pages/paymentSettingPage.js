@@ -10,7 +10,7 @@ const PaymentSettingPage = () => {
   return (
     <l.Wrapper>
       <SideBar isLogin={true}> </SideBar>
-      <MainHeader isLogin={true}></MainHeader>
+      <MainHeader></MainHeader>
       <PaymentSettingContent></PaymentSettingContent>
     </l.Wrapper>
   )

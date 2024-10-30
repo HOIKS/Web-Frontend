@@ -1,4 +1,4 @@
-import MainHeader from "../components/common/mainHeader";
+import LoginHeader from "../components/common/loginHeader";
 import SideBar from "../components/common/sideBar";
 import LoginContent from "../components/loginContent";
 
@@ -10,7 +10,7 @@ const LoginPage = () => {
   return (
     <l.Wrapper>
       <SideBar isLogin={false}> </SideBar>
-      <MainHeader isLogin={false}></MainHeader>
+      <LoginHeader></LoginHeader>
       <LoginContent></LoginContent>
     </l.Wrapper>
   )

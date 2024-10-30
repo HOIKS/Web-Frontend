@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { menuAdd, menuImgAdd, mainCategoryFetch, subCategoryFetch, menuPut, menuDelete} from "../api/menuService.js";
 
 
-const MenuAddModal = ({onCancel, currentMainCategory, currentSubCategory}) => {
+const CategorySettingModal = ({onCancel, currentMainCategory, currentSubCategory}) => {
 
     let [mainCategories, setMainCategories] = useState([]);
     let [subCategories, setSubCategories] = useState([]);
@@ -147,4 +147,4 @@ const MenuAddModal = ({onCancel, currentMainCategory, currentSubCategory}) => {
     )
 }
 
-export default MenuAddModal
+export default CategorySettingModal

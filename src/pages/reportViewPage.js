@@ -9,7 +9,7 @@ const ReportViewPage = () => {
   return (
     <l.Wrapper>
       <SideBar isLogin={true}> </SideBar>
-      <MainHeader isLogin={true}></MainHeader>
+      <MainHeader></MainHeader>
       <div>TODO ! TODO</div>
     </l.Wrapper>
   )

@@ -4,10 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import MenuAddModal from "./menuAddModal.js";
 import MenuSettingModal from "./menuSettingModal.js";
-import CustomSelect from "../customSelect.js";
-import { mainCategoryFetch,  subCategoryFetch, menuFetch, } from "../api/menuSettingFetch.js";
 import menuAddImg from "../../assets/imgs/menuAdd.png";
-
+import CustomSelect from "../customSelect.js";
+import { menuFetch, menuImgAdd, mainCategoryFetch, subCategoryFetch, menuPut, menuDelete} from "../api/menuService.js";
 
 
 const MenuSettingContent = () => {
@@ -31,7 +30,6 @@ const MenuSettingContent = () => {
     // 선택한 메뉴에 대한 정보를 저장하기 위한 State
     let [menus, setMenus] = useState([]);
     let [selectedMenu, setSelectedMenu] = useState([]);
-
 
     // 로드 시 메인 카테고리 항목 가져오기 (API > Fetch)
     useEffect(() => {
@@ -149,6 +147,9 @@ const MenuSettingContent = () => {
                         onChange={handleSelectSubCategory}
                         defaultValue={selectedSubCategory[0]}
                     ></CustomSelect>
+                </div>
+                <div className="categorySetting">
+                    <button className="categorySettingButton"> 카테고리 설정 </button>
                 </div>
             </div>
 

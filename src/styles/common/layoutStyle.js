@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-self: start;
   justify-content: flex-end;
-  box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.02);
   background-color: ${props => props.theme.colors.white};
   width: 100%;
   height: 80px;
@@ -40,6 +40,10 @@ export const HeaderContainer = styled.div`
     height : 3rem;
     width : 3rem;
     margin : 0 1.5rem;
+
+    &:hover {
+      cursor : pointer;
+    }
   }
 
   .profile {
@@ -56,9 +60,11 @@ export const HeaderContainer = styled.div`
       width : 1.6rem;
       height : 0.9rem;
     }
+  }
 
   .loginLink {
     text-decoration: none;
+    margin-right : 30px;
     color: ${props => props.theme.colors.black};
   }
 `

@@ -1,4 +1,4 @@
-import MainHeader from "../components/common/mainHeader";
+import LoginHeader from "../components/common/loginHeader";
 import SideBar from "../components/common/sideBar";
 import LandingContent from "../components/landingContent";
 import * as l from "../styles/common/layoutStyle"
@@ -8,7 +8,7 @@ const LandingPage = () => {
   return (
     <l.Wrapper>
       <SideBar isLogin={false}> </SideBar>
-      <MainHeader isLogin={false}></MainHeader>
+      <LoginHeader></LoginHeader>
       <LandingContent></LandingContent>
     </l.Wrapper>
   )

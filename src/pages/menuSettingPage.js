@@ -10,7 +10,7 @@ const MenuSettingPage = () => {
   return (
     <l.Wrapper>
       <SideBar isLogin={true}> </SideBar>
-      <MainHeader isLogin={true}></MainHeader>
+      <MainHeader></MainHeader>
       <MenuSettingContent> </MenuSettingContent>
     </l.Wrapper>
   )
