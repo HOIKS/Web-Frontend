@@ -7,6 +7,8 @@ export async function Login(email, password) {
         password: password
     }
 
+    sessionStorage.setItem('userEmail', email);
+
     try {
         const response = await api.post('/auth/login', loginFormData, {
             headers: {
@@ -14,10 +16,11 @@ export async function Login(email, password) {
             }
         });
 
-        const { accessToken } = response.data;
-        if (accessToken) {
-          sessionStorage.setItem('accessToken', accessToken);
-          return accessToken;
+        if (response.data.accessToken) {
+          sessionStorage.setItem('accessToken', response.data.accessToken);
+          sessionStorage.setItem('refreshToken', response.data.refreshToken);
+
+          return response.data;
           
         } else {
           throw new Error('Access token not found in response');
@@ -28,6 +31,22 @@ export async function Login(email, password) {
 }
 
 export function Logout(){
-    sessionStorage.removeItem('accessToken');
+    sessionStorage.clear();
+}
+
+export async function GetProfile() {
+
+    try {
+        const response = await api.get('/auth/profile',{
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+
 }
 
