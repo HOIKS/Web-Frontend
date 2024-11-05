@@ -44,6 +44,8 @@ const MenuSettingContent = () => {
             }
         }
         effectMainCategoryFetch();
+        effectSubCategoryFetch(1);
+        effectMenuFetch(1)
         }, []);
 
     // 사용자가 선택한 메인 카테고리에 대한 서브카테고리 항목들 가져오기 (API > Fetch)
