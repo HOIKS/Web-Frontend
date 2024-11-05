@@ -416,6 +416,10 @@ export const CountSettingContainer = styled.div`
         font-size : 20px;
         margin-bottom : 20px;
       }
+
+      .graphItem > img {
+        width: 100%;
+      }
     }
   }
 
@@ -556,6 +560,115 @@ export const PaymentSettingContainer = styled.div`
         margin-bottom: 10px;
       }
     }
+  
+  }
+
+`
+
+export const DashboardContainer = styled.div`
+
+  display: grid;
+  grid-template-columns: 360px 520px 360px;
+  grid-template-rows: 180px 380px;
+  gap: 20px 20px;
+  height: 100%;
+
+
+  .BoxNorm {
+    border-radius: 15px;
+    background-color: ${props => props.theme.colors.gray00};
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+
+  .BoxGraph {
+    grid-column: 1 / 3;
+    padding: 20px;
+  }
+
+
+  .weatherBox {
+    display: grid;
+    grid-template-areas:
+      "temperature  icon"
+      "desc         icon";
+    gap: 10px 10px;
+
+    .weatherTemperature {
+      grid-area: temperature;
+    
+      h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: ${props => props.theme.colors.mainColor};
+      }
+
+      p {
+        font-size : 14px;
+        font-weight : 500;
+        color : ${props => props.theme.colors.gray4};
+      
+      }
+    }
+
+    .weatherDesc {
+      grid-area: desc;
+
+      h3 {
+        font-size : 18px;
+
+        span {
+          font-weight : 700;
+          color : ${props => props.theme.colors.mainColor};
+        }
+      }
+
+      p {
+        font-size : 14px;
+        font-weight : 500;
+        color : ${props => props.theme.colors.gray4};
+      }
+    }
+
+    .weatherIcon {
+      grid-area: icon;
+      width: 120px;
+    }
+  
+  }
+
+  .countBox {
+
+    .countTitle {
+      h3 {
+        font-size : 20px;
+        font-weight : 700;
+        color : ${props => props.theme.colors.black};
+      }
+    }
+
+    .countGraph {
+      .countGraphValue {
+        margin-top : 32px;
+        margin-left : 58%;
+
+        p {
+          font-size : 14px;
+          text-align : right;
+          padding-right : 5px;
+        }
+
+        h1 {
+          font-size: 36px;
+        
+        }
+      }
+    }
+  
+  }
+
+  .recentBox {
+  
   
   }
 

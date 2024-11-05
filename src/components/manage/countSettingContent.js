@@ -1,6 +1,8 @@
 import * as c from "../../styles/common/contentStyle.js";
 import * as l from "../../styles/common/layoutStyle.js";
 
+import countGraphImg from "../../assets/imgs/countGraph.png";
+
 
 const CountSettingContent = () => {
     const GaraData = Array.from({ length: 10 }, (_, index) => index); // [0, 1, 2, ..., 9]
@@ -47,10 +49,11 @@ const CountSettingContent = () => {
                             <div>출금한 금액</div>
                             <div>0원</div>
                         </div>
+                        <div className="graphItem">
+                            <img src={countGraphImg} alt=""/>
+                        </div>
                     </div>
-                    <canvas>
-                        그래프
-                    </canvas>
+                    
                 </div>
                 {/* rightChart */}
                 <div className="rightChart">
@@ -81,7 +84,6 @@ const CountSettingContent = () => {
             </c.CountSettingContainer>
         </l.MainContainer>
     )
-
 }    
   
 export default CountSettingContent;

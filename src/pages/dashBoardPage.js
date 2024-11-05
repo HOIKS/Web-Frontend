@@ -1,5 +1,6 @@
 import MainHeader from "../components/common/mainHeader";
 import SideBar from "../components/common/sideBar";
+import DashboardContent from "../components/dashboardContent";
 import LandingContent from "../components/landingContent";
 import * as l from "../styles/common/layoutStyle"
 
@@ -9,7 +10,7 @@ const DashBoardPage = () => {
     <l.Wrapper>
       <SideBar isLogin={true}> </SideBar>
       <MainHeader></MainHeader>
-      <div>TODO</div>
+      <DashboardContent></DashboardContent>
     </l.Wrapper>
   )
 }
