@@ -653,7 +653,7 @@ export const DashboardContainer = styled.div`
     .countGraph {
       .countGraphValue {
         margin-top : 50px;
-        margin-left : 58%;
+        margin-left : 57%;
 
         p {
           font-size : 14px;
@@ -784,12 +784,50 @@ export const DashboardContainer = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-      
+      }
+    }
+  }
+
+  .rankBox {
+    .rankTitle {
+      font-size : 26px;
+      margin-bottom : 20px;
+      span {
+        color : ${props => props.theme.colors.mainColor};
+      }
+    }
+
+    .rankItem {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+
+      img {
+        width: 120px;
+        padding: 8px;
+        border-radius: 15px;
+      }
+
+      .rankItemInfo {
+        padding-top: 5px;
+        padding-left: 10px;
+
+        h3 {
+          font-size : 24px;
+          color : ${props => props.theme.colors.mainColor};
+          padding-bottom : 10px;
+        
+        }
+
+        p {
+          font-size : 16px;
+          color : ${props => props.theme.colors.gray4};
+        }
       }
     
     }
-  
-  
   
   }
 

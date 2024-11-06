@@ -1,9 +1,10 @@
 import api from "./baseAPI";
 
-export class dashboardFetch {
+export class dashboardService {
     constructor(storeId) {
         this.storeId = storeId;
-        this.RawData = this.initFetch(null);
+        this.RawData = null;
+        this.initPromise = this.initFetch(this.storeId); // initFetch의 Promise 저장
     }
 
     async initFetch(storeId) {
@@ -20,8 +21,8 @@ export class dashboardFetch {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log("[POST REQUEST] : ", requestBody);
-            console.log("[POST RESPONSE] : ", response.data);
+            console.log("[DSHBD]" , response.data);
+            this.RawData = response.data;
             return response.data;
             
         } catch (error) {
@@ -30,32 +31,37 @@ export class dashboardFetch {
         }
     }
 
-    todayTotalSales() {
-        return this.RawData.salesInfo.todaySalesToday;
-
+    async todayTotalSales() {
+        await this.initPromise;
+        return this.RawData.salesInfo.totalSalesToday;
     }
 
-    todayTotalOrders() {
-        return this.RawData.salesInfo.todayOrdersToday;
+    async todayTotalOrders() {
+        await this.initPromise;
+        return this.RawData.salesInfo.totalOrdersToday;
     }
 
-    recentOrders() { // TODO : JSON 내부에서 필요한 항목만 정리하기 
-        const recents = this.RawData.salesInfo.recentOrders;
-        return recents;
+    async recentPayments() { // TODO : JSON 내부에서 필요한 항목만 정리하기 
+        await this.initPromise;
+        return this.RawData.salesInfo.recentPayments[0].items;
     }
 
-    popularItems() {
+    async popularItems() {
+        await this.initPromise;
         return this.RawData.popularMenuItems;
     }
 
-    salesArrayToday() {
+    async salesArrayToday() {
+        await this.initPromise;
         return this.RawData.salesGraph.today;
     }
 
-    salesArrayYesterday() {
+    async salesArrayYesterday() {
+        await this.initPromise;
         return this.RawData.salesGraph.yesterday;
     }
-    salesArrayLastWeek() {
+    async salesArrayLastWeek() {
+        await this.initPromise;
         return this.RawData.salesGraph.lastWeekSameDay;
     }
     

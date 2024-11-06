@@ -1,8 +1,42 @@
 import * as c from "../styles/common/contentStyle.js";
 import * as l from "../styles/common/layoutStyle.js";
+
+import { useState, useEffect } from "react";
+import { dashboardService } from "./api/dashboardService.js";
+import { format } from "date-fns";
 import DashBoardGraph from "../assets/imgs/dashboardMainGraph.jpg";
 
 const DashboardContent = () => {
+
+    const formattedDate = format(new Date(), "yyyy년 M월 d일 HH:mm");
+
+    let [todayTotalSales, setTodayTotalSales] = useState(10000);
+    let [recentPayments, setRecentPayments] = useState([]);
+    let [popularItems, setPopularItems] = useState([]);
+
+    useEffect(() => {
+       const dsbd = new dashboardService(null);
+
+       dsbd.todayTotalSales().then((res) => {
+           setTodayTotalSales(res);
+       }).catch((err) => {
+           window.alert(err);
+       })
+
+       dsbd.recentPayments().then((res) => {
+           setRecentPayments(res);
+           console.log(res);
+       }).catch((err) => {
+           window.alert(err);
+       })
+
+       dsbd.popularItems().then((res) => {
+           setPopularItems(res);
+       }).catch((err) => {
+           window.alert(err);
+       })
+
+    }, []);
 
 
     return (
@@ -31,8 +65,8 @@ const DashboardContent = () => {
                             <img />
                         </div>
                         <div className="countGraphValue">
-                            <p>2024년 6월 12일 15:43 기준</p>
-                            <h1>4,861,300원</h1>
+                            <p>{formattedDate}</p>
+                            <h1>{todayTotalSales.toLocaleString()} 원</h1>
                         </div>
                     </div>
                 </div>
@@ -40,20 +74,17 @@ const DashboardContent = () => {
                 <div className="BoxNorm recentBox">
                     <div className="recentTitle">
                         <h3>최근 결제 내역</h3>
-                        <p className="Time">2024년 6월 12일 15:43</p>
+                        <p className="Time">{formattedDate}</p>
                     </div>
-                    <div className="recentItem">
-                        <h3>아메리카노</h3>
-                        <p>1개</p>
-                        <p>4,500원</p>
-                    </div>
-                    <div className="recentItem">
-                        <h3>카페라떼</h3>
-                        <p>2개</p>
-                        <p>12,900원</p>
-                    </div>
+                    {recentPayments.map((item) => (
+                        <div className="recentItem" key={item.id}>
+                            <h3>{item.name}</h3>
+                            <p>{item.quantity}개</p>
+                            <p>{item.totalPrice.toLocaleString()}원</p>
+                        </div>
+                    ))}
                     <div className="recentTotal">
-                        <p> 총 22,500원</p>
+                        <p> 총 4,900원</p>
                     </div>
                 </div>
 
@@ -90,28 +121,17 @@ const DashboardContent = () => {
                 </div>
 
                 <div className="BoxNorm rankBox">
-                    <h3>우리 매장 인기 <span>TOP 3</span></h3>
-                    <div className="rankItem">
-                        <img />
-                        <div>
-                            <h3>아메리카노</h3>
-                            <p>20-30대 남성 여성 <br/> 아이스 옵션 판매율을 가장 높아요 </p>
+                    <h3 className="rankTitle">우리 매장 인기 <span>TOP 3</span></h3>
+
+                    {popularItems.map((item) => (
+                        <div className="rankItem" key={item.id}>
+                            <img src={"/api/file/static/" + item.photoUrl} />
+                            <div className="rankItemInfo">
+                                <h3>{item.name}</h3>
+                                <p>{item.description}개</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="rankItem">
-                        <img />
-                        <div>
-                            <h3>아이스티</h3>
-                            <p>20-30대 여성 <br/> 아이스 옵션 판매율을 가장 높아요 </p>
-                        </div>
-                    </div>
-                    <div className="rankItem">
-                        <img />
-                        <div>
-                            <h3>초코스무디</h3>
-                            <p>10-20대 여성 <br/> 아이스 옵션 판매율을 가장 높아요 </p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </c.DashboardContainer>
         </l.MainContainer>
