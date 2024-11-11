@@ -5,10 +5,40 @@ import { useState, useEffect } from "react";
 import { dashboardService } from "./api/dashboardService.js";
 import { format } from "date-fns";
 import DashBoardGraph from "../assets/imgs/dashboardMainGraph.jpg";
+import Chart from "react-apexcharts";
 
 const DashboardContent = () => {
-
     const formattedDate = format(new Date(), "yyyy년 M월 d일 HH:mm");
+
+    const graphOptions = {
+        chart: {
+          id: 'Sales'
+        },
+        xaxis: {
+          categories: ['08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+        }, // 16Hours
+        stroke : {
+            curve: 'smooth',
+        }
+      };
+
+    const graphDatas = [
+        {
+          name: 'Today',
+          data: [300, 400, 405, 500, 490, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600]
+        },
+
+        {
+          name: 'Yesterday',
+          data: [150, 230, 320, 440, 510, 620, 760, 830, 920, 1310, 1150, 1230, 1050, 1350, 1520, 1650]
+        },
+
+        {
+          name: 'LastWeek',
+          data: [140, 130, 420, 540, 610, 770, 810, 830, 900, 1210, 950, 1130, 1250, 1150, 1420, 1850]
+        }
+      ];
+
 
     let [todayTotalSales, setTodayTotalSales] = useState(10000);
     let [recentPayments, setRecentPayments] = useState([]);
@@ -98,25 +128,7 @@ const DashboardContent = () => {
                         </div>
                     </div>
                     <div className="graphCanvas">
-                        <img src={DashBoardGraph} />
-                        <div>
-                            <span>08</span>
-                            <span>09</span>
-                            <span>10</span>
-                            <span>11</span>
-                            <span>12</span>
-                            <span>13</span>
-                            <span>14</span>
-                            <span>15</span>
-                            <span>16</span>
-                            <span>17</span>
-                            <span>18</span>
-                            <span>19</span>
-                            <span>20</span>
-                            <span>21</span>
-                            <span>22</span>
-                        </div>
-                        
+                        <Chart options={graphOptions} series={graphDatas} type="line" width="100%" height="430px" /> 
                     </div>
                 </div>
 

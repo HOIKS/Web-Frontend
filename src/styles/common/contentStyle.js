@@ -779,7 +779,6 @@ export const DashboardContainer = styled.div`
         color : ${props => props.theme.colors.gray4};
         font-size : 18px;
         font-weight : 500;
-        padding-left : 20px;
         display: flex;
         flex-direction: row;
         align-items: center;
