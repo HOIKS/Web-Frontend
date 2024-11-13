@@ -3,49 +3,28 @@ import * as l from "../styles/common/layoutStyle.js";
 
 import { useState, useEffect } from "react";
 import { dashboardService } from "./api/dashboardService.js";
-import { format } from "date-fns";
+import { GetWeather } from "./api/weatherService.js";
+import { format, set } from "date-fns";
 import DashBoardGraph from "../assets/imgs/dashboardMainGraph.jpg";
 import Chart from "react-apexcharts";
 
-const DashboardContent = () => {
+const DashboardContent = ({storeId = null}) => {
     const formattedDate = format(new Date(), "yyyy년 M월 d일 HH:mm");
-
-    const graphOptions = {
-        chart: {
-          id: 'Sales'
-        },
-        xaxis: {
-          categories: ['08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
-        }, // 16Hours
-        stroke : {
-            curve: 'smooth',
-        }
-      };
-
-    const graphDatas = [
-        {
-          name: 'Today',
-          data: [300, 400, 405, 500, 490, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600]
-        },
-
-        {
-          name: 'Yesterday',
-          data: [150, 230, 320, 440, 510, 620, 760, 830, 920, 1310, 1150, 1230, 1050, 1350, 1520, 1650]
-        },
-
-        {
-          name: 'LastWeek',
-          data: [140, 130, 420, 540, 610, 770, 810, 830, 900, 1210, 950, 1130, 1250, 1150, 1420, 1850]
-        }
-      ];
-
 
     let [todayTotalSales, setTodayTotalSales] = useState(10000);
     let [recentPayments, setRecentPayments] = useState([]);
     let [popularItems, setPopularItems] = useState([]);
 
+    let [graphOptions, setGraphOptions] = useState({});
+    let [graphDatas, setGraphDatas] = useState([]);
+
+    let [liveSalesGraphOption, setLiveSalesGraphOption] = useState({});
+    let [liveSalesGraphDatas, setLiveSalesGraphDatas] = useState([]);
+    
+    let [weathers, setWeathers] = useState({});
+
     useEffect(() => {
-       const dsbd = new dashboardService(null);
+       const dsbd = new dashboardService(storeId);
 
        dsbd.todayTotalSales().then((res) => {
            setTodayTotalSales(res);
@@ -66,6 +45,24 @@ const DashboardContent = () => {
            window.alert(err);
        })
 
+       dsbd.salesGraphOptions().then((res) => {
+           setGraphOptions(res);
+       }).catch((err) => {
+           window.alert(err);
+       })
+
+       dsbd.salesArrays().then((res) => {
+           setGraphDatas(res);
+       }).catch((err) => {
+           window.alert(err);
+       })
+
+       GetWeather().then((res) => {
+           setWeathers(res);
+       }).catch((err) => {
+           window.alert(err);
+       })
+
     }, []);
 
 
@@ -74,16 +71,15 @@ const DashboardContent = () => {
             <c.DashboardContainer>
                 <div className="BoxNorm weatherBox">
                     <div className="weatherTemperature">
-                        <h1>26.5 °C</h1>
-                        <p>최고 : 28.5 °C, 최저 : 21.0 °C</p>
+                        <h1>{weathers.temp_now}°C</h1>
+                        <p>최고 : {weathers.temp_max}°C, 최저 : {weathers.temp_min}°C</p>
                     </div>
                     <div className="weatherDesc">
-                        <h3>오늘의 날씨는 <span>맑음</span> 이에요!</h3>
+                        <h3>오늘의 날씨는 <span>{weathers.weatherChar}</span> 이에요!</h3>
                         <p>화창한 오늘에 어울리는 메뉴를 추천하는 건 어때요?</p>
                     </div>
-                    <div className="weatherIcon">
-                        <img /> 
-                    </div>
+                    <img className ="weatherIcon" src={weathers.weatherIconUrl}/> 
+
                 </div> 
 
                 <div className="BoxNorm countBox">
@@ -128,7 +124,7 @@ const DashboardContent = () => {
                         </div>
                     </div>
                     <div className="graphCanvas">
-                        <Chart options={graphOptions} series={graphDatas} type="line" width="100%" height="430px" /> 
+                        <Chart options={graphOptions} series={graphDatas} type="area" width="100%" height="430px"/> 
                     </div>
                 </div>
 

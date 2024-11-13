@@ -593,6 +593,7 @@ export const DashboardContainer = styled.div`
       "temperature  icon"
       "desc         icon";
     gap: 10px 10px;
+    padding-right: 5px;
 
     .weatherTemperature {
       grid-area: temperature;
@@ -635,6 +636,7 @@ export const DashboardContainer = styled.div`
 
     .weatherIcon {
       grid-area: icon;
+      padding-top: 15px;
       width: 120px;
     }
   

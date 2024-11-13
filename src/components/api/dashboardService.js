@@ -1,9 +1,12 @@
 import api from "./baseAPI";
+import theme from "../../styles/theme";
+import { type } from "@testing-library/user-event/dist/type";
 
 export class dashboardService {
     constructor(storeId) {
         this.storeId = storeId;
         this.RawData = null;
+        this.Weather = null;
         this.initPromise = this.initFetch(this.storeId); // initFetch의 Promise 저장
     }
 
@@ -36,6 +39,26 @@ export class dashboardService {
         return this.RawData.salesInfo.totalSalesToday;
     }
 
+    async liveSalesGraphOptions() {
+        await this.initPromise;
+        const options = {
+            chart: {
+                id: 'LiveSales'
+            },
+            colors: [theme.colors.mainColor],
+            legend: {
+                show: false
+            },
+            xaxis: {
+                categories: this.RawData.salesGraph.labels,
+            },
+            stroke : {
+                curve: 'smooth',
+            }
+        }
+        return options;
+    }
+
     async todayTotalOrders() {
         await this.initPromise;
         return this.RawData.salesInfo.totalOrdersToday;
@@ -51,18 +74,53 @@ export class dashboardService {
         return this.RawData.popularMenuItems;
     }
 
-    async salesArrayToday() {
+    async salesGraphOptions() {
         await this.initPromise;
-        return this.RawData.salesGraph.today;
+        const options = {
+            chart: {
+                id: 'Sales'
+            },
+            colors: [theme.colors.mainColor, theme.colors.lightColor, theme.colors.gray4],
+            legend: {
+                show: false
+            },
+            xaxis: {
+                categories: this.RawData.salesGraph.labels,
+            },
+            yaxis :{
+                labels :{
+                    formatter : function (value) {
+                        return value.toLocaleString();
+                    }
+                }
+            },
+            dataLabels :{
+                enabled : false
+            },
+            stroke : {
+                curve: 'smooth',
+            }
+        }
+        return options;
     }
 
-    async salesArrayYesterday() {
+    async salesArrays() {
         await this.initPromise;
-        return this.RawData.salesGraph.yesterday;
-    }
-    async salesArrayLastWeek() {
-        await this.initPromise;
-        return this.RawData.salesGraph.lastWeekSameDay;
+        const datas = [{
+                name: 'Today',
+                data: this.RawData.salesGraph.today.data
+            },
+            {
+                name: 'Yesterday',
+                data: this.RawData.salesGraph.yesterday.data
+            },
+            {
+                name: 'LastWeek',
+                data: this.RawData.salesGraph.lastWeekSameDay.data
+            }
+
+        ]
+        return datas
     }
     
 }
