@@ -99,6 +99,10 @@ export const LoginContentContainer = styled.div`
     background-color: ${props => props.theme.colors.mainColor};
     color : ${props => props.theme.colors.white};
     font-weight : 700;
+
+    &:hover {
+      cursor: pointer;
+    }
   
   }
 
@@ -263,6 +267,10 @@ export const MenuSettingContainer = styled.div`
     color: ${props => props.theme.colors.white};
     border-radius: 10px;
     border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
   .menuView{
     display: grid;

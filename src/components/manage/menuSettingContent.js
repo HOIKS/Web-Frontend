@@ -7,6 +7,7 @@ import MenuSettingModal from "./menuSettingModal.js";
 import menuAddImg from "../../assets/imgs/menuAdd.png";
 import CustomSelect from "../customSelect.js";
 import { menuFetch, menuImgAdd, mainCategoryFetch, subCategoryFetch, menuPut, menuDelete} from "../api/menuService.js";
+import CategorySettingModal from "./categorySettingModal.js";
 
 
 const MenuSettingContent = () => {
@@ -26,12 +27,13 @@ const MenuSettingContent = () => {
     // 메뉴 추가 모달 , 메뉴 수정 모달 조건부 렌더링을 위한 State
     let [isAddModalOpen, setAddModalOpen] = useState(false);
     let [isSettingModalOpen, setSettingModalOpen] = useState(false);
+    let [isCategorySettingModalOpen, setCategorySettingModalOpen] = useState(false);
 
     // 선택한 메뉴에 대한 정보를 저장하기 위한 State
     let [menus, setMenus] = useState([]);
     let [selectedMenu, setSelectedMenu] = useState([]);
 
-    // 로드 시 메인 카테고리 항목 가져오기 (API > Fetch)
+    // 로드 시 메인 카테고리 항목 가져오기 (API > menuService.js > mainCategoryFetch)
     useEffect(() => {
         async function effectMainCategoryFetch() {
             try {
@@ -48,7 +50,7 @@ const MenuSettingContent = () => {
         effectMenuFetch(1)
         }, []);
 
-    // 사용자가 선택한 메인 카테고리에 대한 서브카테고리 항목들 가져오기 (API > Fetch)
+    // 사용자가 선택한 메인 카테고리에 대한 서브카테고리 항목들 가져오기 (API > menuService.js > subCategoryFetch)
     async function effectSubCategoryFetch(MainCategoryId) {
         try {
             const fetchedSubCategory = await subCategoryFetch(MainCategoryId);
@@ -60,7 +62,7 @@ const MenuSettingContent = () => {
         }
     }
 
-    // 사용자가 선택한 서브 카테고리에 대한 메뉴 항목들 가져오기 (API > Fetch)
+    // 사용자가 선택한 서브 카테고리에 대한 메뉴 항목들 가져오기 (API > menuService.js > menuFetch)
     async function effectMenuFetch(SubCategoryId) {
         try {
             const fetchedMenus = await menuFetch(SubCategoryId);
@@ -116,6 +118,15 @@ const MenuSettingContent = () => {
         setSettingModalOpen(false); // 메뉴 설정 모달 닫기
         effectMenuFetch(selectedSubCategory[0]); // 메뉴 항목 새로고침 (=다시 가져오기)
     };
+    // 카테고리 설정 모달 열기 핸들링
+    const handleOpenCategorySettingModal = () => {
+        setCategorySettingModalOpen(true); // 카테고리 설정 모달 닫기
+    };
+    
+    // 카테고리 설정 모달 닫기 onCancel 핸들링 (모달 컴포넌트로부터 받아옴)
+    const handleCloseCategorySettingModal = () => {
+        setCategorySettingModalOpen(false); // 카테고리 설정 모달 닫기
+    };
 
     if (isLoading) return <h1>Loading...</h1>;
     if (error) return <h1>Error: {error.message}</h1>;
@@ -129,6 +140,10 @@ const MenuSettingContent = () => {
         {isSettingModalOpen && (
             <MenuSettingModal onCancel={handleCloseSettingModal} selectedMenu={selectedMenu}>
             </MenuSettingModal>
+        )}
+        {isCategorySettingModalOpen && (
+            <CategorySettingModal onCancel={handleCloseCategorySettingModal}>
+            </CategorySettingModal>
         )}
         <c.MenuSettingContainer>
             <div className="categoryView">
@@ -151,7 +166,7 @@ const MenuSettingContent = () => {
                     ></CustomSelect>
                 </div>
                 <div className="categorySetting">
-                    <button className="categorySettingButton"> 카테고리 설정 </button>
+                    <button className="categorySettingButton" onClick={handleOpenCategorySettingModal}> 카테고리 설정 </button>
                 </div>
             </div>
 
