@@ -23,6 +23,7 @@ const MenuSettingContent = () => {
     // selectedMainCategory, selectedSubCategory: [id, StringName]
     let [selectedMainCategory, setSelectedMainCategory] = useState([1, null]);
     let [selectedSubCategory, setSelectedSubCategory] = useState([1, null]);
+    let [isCategoryHandled, setCategoryHandled] = useState(false);
 
     // 메뉴 추가 모달 , 메뉴 수정 모달 조건부 렌더링을 위한 State
     let [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -77,12 +78,15 @@ const MenuSettingContent = () => {
     const handleSelectMainCategory = (valueId, nameString) => {
         setSelectedMainCategory([valueId, nameString]);
         effectSubCategoryFetch(valueId);
+        // effectMenuFetch(subCategories[0].categoryId);
     }
 
     // 서브카테고리 selsect onChange 핸들링
     const handleSelectSubCategory = (valueId, nameString) => {
         setSelectedSubCategory([valueId, nameString]);
         effectMenuFetch(valueId);
+        setCategoryHandled(true);
+
     }
 
     // 메뉴 추가 onClick 핸들링
@@ -190,5 +194,6 @@ const MenuSettingContent = () => {
       </l.MainContainer>
     )
   }
+
   
   export default MenuSettingContent;

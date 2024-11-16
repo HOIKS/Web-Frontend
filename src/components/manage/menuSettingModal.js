@@ -1,6 +1,7 @@
 import * as m from "../../styles/common/modalStyle.js";
 import menuAddImg from "../../assets/imgs/menuAdd.png";
 import CustomSelect from "../customSelect.js";
+import CloseBtn from "../../assets/imgs/closeBtn.png"
 import { useState, useEffect } from "react";
 import { menuImgAdd, mainCategoryFetch, subCategoryFetch, menuPut, menuDelete} from "../api/menuService.js";
 
@@ -157,6 +158,12 @@ const MenuSettingModal = ({onCancel, selectedMenu}) => {
     return (
         <m.MenuSettingModal onSubmit={handleMenuPut}>
             <input type="hidden" name="menuId" value={menu.id}/>
+            <div className="modalHeader">
+                <div className="first">
+                    <img className="mac-close-button" src={CloseBtn} alt="" onClick={onCancel}></img>
+                    <h2>메뉴 설정 </h2>
+                </div>
+            </div>
             <div className="menuTop">
                 <input  type="text" name="menuName" 
                         placeholder={menu.name} 

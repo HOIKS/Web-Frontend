@@ -1,19 +1,18 @@
 import MainHeader from "../components/common/mainHeader";
 import SideBar from "../components/common/sideBar";
-import FinishKioskContent from "../components/finish/finishKioskContent";
+import KioskSetupContent from "../components/manage/kioskSetupContent";
 
 import * as l from "../styles/common/layoutStyle";
 
-
-const FinishKioskPage = () => {
+const KioskSetupPage = () => {
 
   return (
     <l.Wrapper>
       <SideBar isLogin={true}> </SideBar>
       <MainHeader></MainHeader>
-      <FinishKioskContent> </FinishKioskContent>
+      <KioskSetupContent></KioskSetupContent>
     </l.Wrapper>
   )
 }
 
-export default FinishKioskPage;
+export default KioskSetupPage;

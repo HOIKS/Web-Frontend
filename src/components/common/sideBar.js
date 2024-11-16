@@ -48,6 +48,7 @@ const SideBar = ({isLogin}) => {
                 <li className="imHere"> <h3> <Link to="/manage/menu"> 메뉴 </Link> </h3></li>
                 <li> <h3> <Link to="/manage/count"> 시재 </Link> </h3></li>
                 <li> <h3> <Link to="/manage/payment"> 결제 </Link> </h3></li>
+                <li> <h3> <Link to="/manage/kiosk"> 키오스크 </Link> </h3></li>
               </ul>
             </li>
             <li> <h2><Link to="/finish/kiosk">마감</Link></h2></li>
@@ -72,6 +73,7 @@ const SideBar = ({isLogin}) => {
                 <li> <h3> <Link to="/manage/menu"> 메뉴 </Link> </h3></li>
                 <li className="imHere"> <h3> <Link to="/manage/count"> 시재 </Link> </h3></li>
                 <li> <h3> <Link to="/manage/payment"> 결제 </Link> </h3></li>
+                <li> <h3> <Link to="/manage/kiosk"> 키오스크 </Link> </h3></li>
               </ul>
             </li>
             <li> <h2><Link to="/finish/kiosk">마감</Link></h2></li>
@@ -96,6 +98,32 @@ const SideBar = ({isLogin}) => {
                 <li> <h3> <Link to="/manage/menu"> 메뉴 </Link> </h3></li>
                 <li> <h3> <Link to="/manage/count"> 시재 </Link> </h3></li>
                 <li className="imHere"> <h3> <Link to="/manage/payment"> 결제 </Link> </h3></li>
+                <li> <h3> <Link to="/manage/kiosk"> 키오스크 </Link> </h3></li>
+              </ul>
+            </li>
+            <li> <h2><Link to="/finish/kiosk">마감</Link></h2></li>
+            <li> <h2><Link to="/report">보고서</Link></h2></li>
+          </ul>
+          </l.SideBarContainer>
+        )
+      }
+      case "/manage/kiosk": {
+        return (
+          <l.SideBarContainer>
+          <div className="mainLogo">
+            <Link to="/dashboard"><h1>HOIKS</h1></Link>
+          </div>
+  
+          <ul className="serviceList">
+            <li><h2><Link to="/dashboard">대시보드</Link></h2></li>
+            <li>
+              <h3 style = {{marginBottom : 10}}> 메인 메뉴</h3>
+              <h2 className="alsoHere"> <Link to="/manage/menu">관리</Link> </h2>
+              <ul className="serviceExtended">
+                <li> <h3> <Link to="/manage/menu"> 메뉴 </Link> </h3></li>
+                <li> <h3> <Link to="/manage/count"> 시재 </Link> </h3></li>
+                <li> <h3> <Link to="/manage/payment"> 결제 </Link> </h3></li>
+                <li className="imHere"> <h3> <Link to="/manage/kiosk"> 키오스크 </Link> </h3></li>
               </ul>
             </li>
             <li> <h2><Link to="/finish/kiosk">마감</Link></h2></li>

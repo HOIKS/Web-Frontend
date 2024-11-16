@@ -1,5 +1,6 @@
 import * as m from "../../styles/common/modalStyle";
 import menuAddImg from "../../assets/imgs/menuAdd.png";
+import CloseBtn from "../../assets/imgs/closeBtn.png"
 import { useState, useEffect } from "react";
 import { menuAdd, menuImgAdd, mainCategoryFetch, subCategoryFetch, menuPut, menuDelete} from "../api/menuService.js";
 
@@ -95,6 +96,12 @@ const MenuAddModal = ({onCancel, currentMainCategory, currentSubCategory}) => {
 
     return (
         <m.MenuCommonModal onSubmit={handleMenuAdd}>
+            <div className="modalHeader">
+                <div className="first">
+                    <img className="mac-close-button" src={CloseBtn} alt="" onClick={onCancel}></img>
+                    <h2>메뉴 설정 </h2>
+                </div>
+            </div>
             <div className="menuTop">
                 <input type="text" name="menuName"placeholder="메뉴 명"/>
                 <div>

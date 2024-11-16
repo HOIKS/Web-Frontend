@@ -54,6 +54,9 @@ const CategorySettingModal = ({onCancel}) => {
         effectSubCategoryFetch(selectedMainCategory.value);
         setSelectedMainCategory([selectedMainCategory.value, selectedMainCategory.innerText]);
         setSelectedSubCategory([null, null]);
+        if (isMainCategoryAddMode) {
+
+        }
         
     }
     const handleMainCateogoryAdd = async () => {

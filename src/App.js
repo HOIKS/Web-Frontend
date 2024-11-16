@@ -9,6 +9,7 @@ import DashBoardPage from './pages/dashBoardPage';
 import MenuSettingPage from './pages/menuSettingPage';
 import CountSettingPage from './pages/countSettingPage';
 import PaymentSettingPage from './pages/paymentSettingPage';
+import KioskSetupPage from './pages/kioskSetupPage';
 
 import FinishKioskPage from './pages/finishKioskPage';
 import FinishCalendarPage from './pages/finishCalendarPage';
@@ -27,6 +28,7 @@ function App() {
             <Route path='/manage/menu' element={<MenuSettingPage />} />
             <Route path='/manage/count' element={<CountSettingPage />} />
             <Route path='/manage/payment' element={<PaymentSettingPage />} />
+            <Route path='/manage/kiosk' element={<KioskSetupPage />} />
             <Route path='/finish/kiosk' element={<FinishKioskPage />} />
             <Route path='/finish/calendar' element={<FinishCalendarPage />} />
             <Route path='/report' element={<ReportViewPage />} />
