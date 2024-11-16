@@ -6,7 +6,7 @@ export async function devicesGet(storeId) {
         storeId: storeId
     }
 
-    console.log("[getDevices] Input : ", requestBody);
+    // console.log("[getDevices] Input : ", requestBody);
 
     try { 
         const response = await api.get(
@@ -18,7 +18,7 @@ export async function devicesGet(storeId) {
             }
         
         });
-        console.log("[GET RESPONSE] : ", response.data);
+        // console.log("[GET RESPONSE] : ", response.data);
         return response.data;
         
     } catch (error) {
@@ -33,7 +33,7 @@ export async function deviceAdd(name, storeId) {
         name : name,
         storeId: storeId
     }
-    console.log("[mainCategoryAdd] Input : ", requestBody);
+    // console.log("[mainCategoryAdd] Input : ", requestBody);
 
     try { 
         const response = await api.post(
@@ -44,7 +44,7 @@ export async function deviceAdd(name, storeId) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log("[POST RESPONSE] : ", response.data);
+        // console.log("[POST RESPONSE] : ", response.data);
         return response.data;
         
     } catch (error) {
@@ -59,7 +59,7 @@ export async function deviceEdit(deviceId, name) {
         deviceId: deviceId,
         name: name
     }
-    console.log("[subCategoryAdd] Input : ", requestBody);
+    // console.log("[subCategoryAdd] Input : ", requestBody);
 
     // try { 
     //     const response = await api.post(
@@ -83,7 +83,7 @@ export async function deviceDelete(deviceId) {
     const requestBody = {
         deviceId: deviceId
     }
-    console.log("[subCategoryDelete] Input : ", requestBody);
+    // console.log("[subCategoryDelete] Input : ", requestBody);
 
     try { 
         const response = await api.delete(
@@ -94,7 +94,7 @@ export async function deviceDelete(deviceId) {
             },
             data: requestBody
         });
-        console.log("[DELETE RESPONSE] : ", response.data);
+        // console.log("[DELETE RESPONSE] : ", response.data);
         return response.data;
         
     } catch (error) {

@@ -30,6 +30,41 @@ export async function Login(email, password) {
     }
 }
 
+export async function SignUp(signupData) {
+    try {
+        const response = await api.post('/auth/sign-up', signupData, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+        return response.data;
+        
+    } catch (error) {
+        throw error;
+    }
+    
+}
+
+export async function SendEmail(email) {
+    const requestBody = {
+        email: email
+    }
+
+    console.log(requestBody)
+    try {
+        const response = await api.post('/auth/send-email', requestBody, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+        return response.data;
+        
+    } catch (error) {
+        throw error;
+    }
+    
+}
+
 export function Logout(){
     sessionStorage.clear();
 }

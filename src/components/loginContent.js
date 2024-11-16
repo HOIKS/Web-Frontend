@@ -3,7 +3,7 @@ import * as l from "../styles/common/layoutStyle";
 
 import { Login } from "./api/authService";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const LoginContent = () => {
@@ -69,10 +69,13 @@ const LoginContent = () => {
                         <input className="idSaveCheck" type="checkbox"/> 
                         <p> 아이디 저장</p>
                         <div style = {{opacity : 0}}> VO </div>
-                        <div style = {{opacity : 0}}> VO </div>
-                        <p> 비밀번호를 잊으셨나요?</p>
+                        <div className="plusSection">
+                            <p> 비밀번호를 잊으셨나요? <br/> </p>
+                            <Link to="/signup" >회원가입</Link>
+                        </div>
+                        
                     </div>
-
+                    
                     <button type="submit">로그인</button>
 
                 </form>

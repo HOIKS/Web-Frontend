@@ -24,7 +24,7 @@ export class dashboardService {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log("[DSHBD]" , response.data);
+            // console.log("[DSHBD]" , response.data);
             this.RawData = response.data;
             return response.data;
             

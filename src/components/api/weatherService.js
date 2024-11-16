@@ -19,7 +19,6 @@ export async function GetWeather(storeId) {
         var weatherChar = ''
         var weatherIconUrl = ''
 
-        console.log(response.data.weather[0].id)
 
         if ((199 < response.data.weather[0].id) && (response.data.weather[0].id < 299)) {
             weatherChar = '폭풍우'
@@ -53,7 +52,6 @@ export async function GetWeather(storeId) {
             'weatherChar' : weatherChar,
             'weatherIconUrl' : weatherIconUrl
         }
-        console.log(preprocessed)
         return preprocessed
     } catch (error) {
         throw error;

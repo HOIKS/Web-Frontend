@@ -25,7 +25,6 @@ const KioskSetupContent = () => {
         try {
             const deviceList = await devicesGet(null); // null will be storeId
             setDeviceList(deviceList);
-            console.log(deviceList);
         } catch (error) {
             console.error(error);
         }
@@ -33,7 +32,6 @@ const KioskSetupContent = () => {
 
     const OpenDeviceModal = (e) => {
         const deviceId = parseInt(e.currentTarget.dataset.id, 10);
-        console.log(deviceId);
         setSelectedDeviceInfo(deviceList.find(device => device.id === deviceId));
         setDeviceModalOpen("Edit");
     }

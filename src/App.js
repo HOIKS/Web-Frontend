@@ -16,6 +16,7 @@ import FinishCalendarPage from './pages/finishCalendarPage';
 
 import ReportViewPage from './pages/reportViewPage';
 import LoginPage from './pages/loginPage';
+import SignUpPage from './pages/signupPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <GlobalStyle/>  
           <Routes>       
             <Route path='/' element={<LandingPage />} />
+            <Route path='/signup' element={<SignUpPage />} />
             <Route path='/dashboard' element={<DashBoardPage />} />
             <Route path='/manage/menu' element={<MenuSettingPage />} />
             <Route path='/manage/count' element={<CountSettingPage />} />

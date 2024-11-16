@@ -123,6 +123,18 @@ export const LoginContentContainer = styled.div`
     margin-top: 4rem;
     margin-left: 11rem;
     
+    .plusSection {
+      
+      padding-top: 5rem;
+      text-align: right;
+
+      a {
+        display: inline-block;
+        margin-top: 1rem;
+        text-decoration: none;
+        color : ${props => props.theme.colors.gray4};
+      }
+    }
   }
     
   .inputSection {

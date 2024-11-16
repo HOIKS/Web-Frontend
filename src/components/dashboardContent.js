@@ -4,8 +4,7 @@ import * as l from "../styles/common/layoutStyle.js";
 import { useState, useEffect } from "react";
 import { dashboardService } from "./api/dashboardService.js";
 import { GetWeather } from "./api/weatherService.js";
-import { format, set } from "date-fns";
-import DashBoardGraph from "../assets/imgs/dashboardMainGraph.jpg";
+import { format } from "date-fns";
 import Chart from "react-apexcharts";
 
 const DashboardContent = ({storeId = null}) => {
@@ -34,7 +33,6 @@ const DashboardContent = ({storeId = null}) => {
 
        dsbd.recentPayments().then((res) => {
            setRecentPayments(res);
-           console.log(res);
        }).catch((err) => {
            window.alert(err);
        })
