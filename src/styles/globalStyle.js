@@ -8,6 +8,7 @@ import Pretendard_Medium from "../assets/fonts/Pretendard-Medium.woff"
 import Pretendard_Regular from "../assets/fonts/Pretendard-Regular.woff"
 import Pretendard_SemiBold from "../assets/fonts/Pretendard-SemiBold.woff"
 import Pretendard_Thin from "../assets/fonts/Pretendard-Thin.woff"
+import OrelegaOne from "../assets/fonts/OrelegaOne-Regular.woff"
 
 const GlobalStyle = createGlobalStyle`
 
@@ -47,6 +48,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Pretendard-Thin';
     src: url(${Pretendard_Thin}) format('woff');
 }
+@font-face {
+    font-family: 'OrelegaOne';
+    src: url(${OrelegaOne}) format('woff');
+}
 
 *, *::before, *::after {
   margin : 0;
@@ -54,26 +59,41 @@ const GlobalStyle = createGlobalStyle`
   box-sizing : border-box;
 
 }
-@media (min-width: 800px) {
-  html {
-    font-size : 62.5% // 1rem = 10px
-  }
+
+
+// @media (min-width: 1500px) {
+//   html {
+//     font-size : 47.5%;
+//   }
+// }
+  
+
+// @media (max-width: 1500px) {
+//   html {
+//     font-size : 25.5%;
+//   }
+// }
+
+html {
+    font-size: 47.5%;
+    height : 100%;
+    width : 100%;
+    min-width : 1300px;
+    min-height : 800px;
+    overflow-x : scroll;
 }
+
 
 body {
   font-family : 'Pretendard-Medium';
-	display: flex;
   margin : auto;
-  background : ${props => props.theme.colors.colorBg};
-  color : ${props => props.theme.colors.colorMain};
+  background : ${props => props.theme.colors.white};
+  color : ${props => props.theme.colors.black};
   list-style : none;
-  height : 100vh;
-  justify-content: center;
-  align-items : center;
-  
   &::-webkit-scrollbar {
     display: none;
   }
+  
 }
 `;
 
