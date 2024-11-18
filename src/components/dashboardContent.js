@@ -108,7 +108,7 @@ const DashboardContent = ({storeId = null}) => {
                         </div>
                     ))}
                     <div className="recentTotal">
-                        <p> 총 4,900원</p>
+                        <p> 총 9,000원</p>
                     </div>
                 </div>
 

@@ -42,7 +42,6 @@ const FinishCalendarContent = () => {
                         <button className="detailReportButton">상세보고서 보러가기</button>
                     </div>
                 </div>
-                
             </c.FinishCalendarContainer>
         </l.MainContainer>
     )

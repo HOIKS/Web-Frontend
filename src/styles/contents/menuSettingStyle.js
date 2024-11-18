@@ -32,6 +32,24 @@ export const MenuSettingContainer = styled.div`
       border-radius : 8px;
     }
 
+  .categorySearchButton {
+    width: 120px;
+    height: 50px;
+    margin-top: 28px;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: ${props => props.theme.colors.mainColor};
+    color: ${props => props.theme.colors.white};
+    border-radius: 10px;
+    border: none;
+
+    &:hover {
+      background-color: ${props => props.theme.colors.mainColor};
+      color: ${props => props.theme.colors.white};
+      cursor: pointer;
+    }
+  }
   .categorySettingButton {
     width: 160px;
     height: 50px;

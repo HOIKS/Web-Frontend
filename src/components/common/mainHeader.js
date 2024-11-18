@@ -1,6 +1,4 @@
 import * as l from "../../styles/common/layoutStyle.js"
-import * as m from "../../styles/modals/modalStyle.js"
-import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { GetProfile, Logout } from "../api/authService";
 import CalendarIcon from "../../assets/imgs/calendar.png";
@@ -53,10 +51,10 @@ const MainHeader = () => {
           <img className="more" alt="" src={SkipToggleIcon} onClick={() => setIsProfileOpen(!isProfileOpen)} />
         </div>
         {isProfileOpen && (
-          <m.ProfileModal>
+          <l.ProfileModal>
             <h2>{userProfile.name} 님 반가워요!</h2>
             <h2><button onClick={handleLogout}>로그아웃</button></h2>
-          </m.ProfileModal>
+          </l.ProfileModal>
         )}
         </l.HeaderContainer>
     </l.HeaderContainer>

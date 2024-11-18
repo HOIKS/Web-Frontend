@@ -1,10 +1,8 @@
 import * as c from "../../styles/contents/kioskSetupStyle.js";
 import * as l from "../../styles/common/layoutStyle.js";
-import creditCardIcon from "../../assets/imgs/creditCard.png";
-import couponIcon from "../../assets/imgs/coupon.png";
 import menuAddImg from "../../assets/imgs/menuAdd.png";
 import KioskImg from "../../assets/imgs/kioskImg.png";
-import { devicesGet, deviceAdd, deviceEdit, deviceDelete } from "../api/deviceService.js";
+import { devicesGet } from "../api/deviceService.js";
 import { useEffect, useState } from "react";
 import KioskSetupModal from "./kioskSetupModal.js";
 import KioskAddModal from "./kioskAddModal.js";

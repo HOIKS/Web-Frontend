@@ -3,8 +3,6 @@ import CloseBtn from "../../assets/imgs/closeBtn.png"
 import { useState, useEffect } from "react";
 import { mainCategoryFetch, subCategoryFetch } from "../api/menuService";
 import { subCategoryAdd, subCategoryDelete, mainCategoryAdd, mainCategoryDelete } from "../api/categoryService";
-import { is } from "date-fns/locale";
-import { set } from "date-fns";
 
 const CategorySettingModal = ({onCancel}) => {
 
@@ -49,7 +47,6 @@ const CategorySettingModal = ({onCancel}) => {
 
     const handleMainCategoryClick = (e) => {
         const selectedMainCategory = e.target
-        // console.log("MainCat Sel", selectedMainCategory.innerText);
         setSelectedITem([selectedMainCategory.value, selectedMainCategory.innerText, true]);
         effectSubCategoryFetch(selectedMainCategory.value);
         setSelectedMainCategory([selectedMainCategory.value, selectedMainCategory.innerText]);
@@ -74,7 +71,6 @@ const CategorySettingModal = ({onCancel}) => {
 
     const handleSubCategoryClick = (e) => {
         const selectedSubCategory = e.target
-        // console.log("SubCat Sel", selectedSubCategory.innerText);
         setSelectedITem([selectedSubCategory.value, selectedSubCategory.innerText, false]);
         setSelectedSubCategory([selectedSubCategory.value, selectedSubCategory.innerText]);
     }
@@ -93,6 +89,7 @@ const CategorySettingModal = ({onCancel}) => {
     }
 
     const handleCategoryDelete = async () => {
+        if (window.confirm("정말로 " + selectedItem[1] + " 을(를) 삭제하시겠습니까?")) {
         try {
             if (selectedItem[2] === true) { // 메인카테고리 삭제
                 const result = await mainCategoryDelete(selectedItem[0]);
@@ -111,6 +108,9 @@ const CategorySettingModal = ({onCancel}) => {
             }
         } catch (error) {
             window.alert(error);
+            }
+        } else {
+            return;
         }
     }
 

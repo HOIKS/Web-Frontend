@@ -20,6 +20,7 @@ const KioskSetupModal = ({onCancel, deviceInfo}) => {
     };
 
     const handleDeviceDelete = async () => {
+        if (window.confirm("정말로 " + receivedDeviceInfo.name + " 을(를) 삭제하시겠습니까?")) {
         try {
             const result = await deviceDelete(receivedDeviceInfo.id); // null will be storeId
             if (result) {
@@ -30,7 +31,11 @@ const KioskSetupModal = ({onCancel, deviceInfo}) => {
         } catch (error) {
             window.alert(error);
         }
+        } else {
+            return;
+        }
     }
+
     return (
         <m.KioskSetupModal>
             <div className="modalHeader">

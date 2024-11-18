@@ -71,6 +71,7 @@ const MenuSettingModal = ({onCancel, selectedMenu}) => {
     }
 
     async function handleMenuDelete() {
+        if (window.confirm("정말로 " + menu.name + " 을(를) 삭제하시겠습니까?")) {
 
         try {
             const responseMenuDelete = await menuDelete(parseInt(menu.id, 10));
@@ -79,9 +80,11 @@ const MenuSettingModal = ({onCancel, selectedMenu}) => {
                 onCancel();
             }
         } catch (error) {
-            window.alert(error);
+                window.alert(error);
+            }
+        } else {
+            return;
         }
-        
     }
 
     useEffect(() => {

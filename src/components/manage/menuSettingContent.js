@@ -78,7 +78,6 @@ const MenuSettingContent = () => {
     const handleSelectMainCategory = (valueId, nameString) => {
         setSelectedMainCategory([valueId, nameString]);
         effectSubCategoryFetch(valueId);
-        // effectMenuFetch(subCategories[0].categoryId);
     }
 
     // 서브카테고리 selsect onChange 핸들링
@@ -87,6 +86,10 @@ const MenuSettingContent = () => {
         effectMenuFetch(valueId);
         setCategoryHandled(true);
 
+    }
+
+    const DirectAccess = () => {
+        effectMenuFetch(subCategories[0].id);
     }
 
     // 메뉴 추가 onClick 핸들링
@@ -170,6 +173,7 @@ const MenuSettingContent = () => {
                     ></CustomSelect>
                 </div>
                 <div className="categorySetting">
+                    <button className="categorySearchButton" onClick={DirectAccess}>조회</button>
                     <button className="categorySettingButton" onClick={handleOpenCategorySettingModal}> 카테고리 설정 </button>
                 </div>
             </div>
