@@ -1,4 +1,4 @@
-import * as c from "../../styles/common/contentStyle.js";
+import * as c from "../../styles/contents/countSettingStyle.js";
 import * as l from "../../styles/common/layoutStyle.js";
 
 import countGraphImg from "../../assets/imgs/countGraph.png";

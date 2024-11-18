@@ -1,4 +1,4 @@
-import * as m from "../../styles/common/modalStyle";
+import * as m from "../../styles/modals/categoryModalStyle.js";
 import CloseBtn from "../../assets/imgs/closeBtn.png"
 import { useState, useEffect } from "react";
 import { mainCategoryFetch, subCategoryFetch } from "../api/menuService";

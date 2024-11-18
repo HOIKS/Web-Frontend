@@ -1,4 +1,4 @@
-import * as c from "../../styles/contents/finishCalendarContentStyle.js";
+import * as c from "../../styles/contents/finishCalendarStyle.js";
 import * as l from "../../styles/common/layoutStyle.js";
 
 import CustomCalendar from "../customCalendar";

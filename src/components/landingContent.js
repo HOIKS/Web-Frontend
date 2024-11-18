@@ -1,5 +1,5 @@
-import * as c from "../styles/common/contentStyle";
-import * as l from "../styles/common/layoutStyle";
+import * as c from "../styles/contents/landingStyle.js";
+import * as l from "../styles/common/layoutStyle.js";
 import { Link } from "react-router-dom";
 
 import LandingImage from "../assets/imgs/landingImage.png";

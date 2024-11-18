@@ -1,5 +1,5 @@
-import * as l from "../../styles/common/layoutStyle"
-import * as m from "../../styles/common/modalStyle"
+import * as l from "../../styles/common/layoutStyle.js"
+import * as m from "../../styles/modals/modalStyle.js"
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { GetProfile, Logout } from "../api/authService";

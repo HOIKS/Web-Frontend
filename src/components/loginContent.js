@@ -1,5 +1,5 @@
-import * as c from "../styles/common/contentStyle";
-import * as l from "../styles/common/layoutStyle";
+import * as c from "../styles/contents/loginStyle.js";
+import * as l from "../styles/common/layoutStyle.js";
 
 import { Login } from "./api/authService";
 import { useState } from "react";

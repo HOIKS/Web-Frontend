@@ -1,4 +1,4 @@
-import * as c from "../../styles/common/contentStyle.js";
+import * as c from "../../styles/contents/menuSettingStyle.js";
 import * as l from "../../styles/common/layoutStyle.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";

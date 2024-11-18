@@ -1,4 +1,4 @@
-import * as c from "../styles/contents/signupContentStyle";
+import * as c from "../styles/contents/signupStyle";
 import * as l from "../styles/common/layoutStyle";
 
 import { SendEmail, SignUp } from "./api/authService";

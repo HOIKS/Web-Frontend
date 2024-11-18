@@ -1,4 +1,4 @@
-import * as m from "../../styles/common/modalStyle.js";
+import * as m from "../../styles/modals/menuModalStyle.js";
 import menuAddImg from "../../assets/imgs/menuAdd.png";
 import CustomSelect from "../customSelect.js";
 import CloseBtn from "../../assets/imgs/closeBtn.png"

@@ -1,4 +1,4 @@
-import * as c from "../../styles/common/contentStyle.js";
+import * as c from "../../styles/contents/paymentSettingStyle.js";
 import * as l from "../../styles/common/layoutStyle.js";
 import creditCardIcon from "../../assets/imgs/creditCard.png";
 import couponIcon from "../../assets/imgs/coupon.png";

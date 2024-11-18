@@ -1,4 +1,4 @@
-import * as c from "../../styles/contents/kioskSetupContentStyle.js";
+import * as c from "../../styles/contents/kioskSetupStyle.js";
 import * as l from "../../styles/common/layoutStyle.js";
 import creditCardIcon from "../../assets/imgs/creditCard.png";
 import couponIcon from "../../assets/imgs/coupon.png";
